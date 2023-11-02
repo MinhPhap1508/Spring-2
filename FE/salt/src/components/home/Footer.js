@@ -3,7 +3,7 @@ export function Footer () {
         <>
         {/* Remove the container if you want to extend the Footer to full width. */}
 <div>
-  <footer className="bg-primary text-center text-lg-start text-white">
+  <footer className="bg-dark text-center text-lg-start text-white mt-5">
     {/* Grid container */}
     <div className="container p-4">
       {/*Grid row*/}

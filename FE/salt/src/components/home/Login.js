@@ -14,7 +14,7 @@ export function Login () {
             <h1 class="form__title">Thông tin đăng nhập</h1>
             <input class="form__email" type="text" placeholder="Tài khoản"/>
             <input class="form__password" type="text" placeholder="******"/>
-            <input class="form__submit-btn" type="submit" value="Login"/>
+            <input class="form__submit-btn" type="submit" value="Đăng nhập"/>
           </form><span>Quên<a class="form__link" href="#">Tài khoản</a><a>/</a><a class="form__link" href="#">Mật khẩu</a></span>
           <p> <a class="form__link" href="#">Tạo tài khoản mới</a></p>
         </div>

@@ -54,7 +54,7 @@ h6{
     color: #fff;
     background-color: orange;
 }
-.card-body{
+.cad-body{
     padding: 8px;
 }
 .sign{
@@ -65,7 +65,7 @@ h6{
     border: 1px solid orange;
     border-radius: 5px;
     width: 65px;
-    position: absolute;
+    /* position: absolute; */
     top: 2%;
 }
 @media(min-width:1200px){
@@ -99,12 +99,12 @@ h6{
         margin: 0;
         float: right;
     }
-    .card{
+    .cad{
         width: 300px;
         height: 330px;
         border: none;
     }
-    .card-img-top{
+    .cad-img-top{
         width: 295px;
         height: 200px;
         border-radius: 10px;
@@ -143,12 +143,12 @@ h6{
         margin: 0;
         float: right;
     }
-    .card{
+    .cad{
         width: 200px;
         height: 330px;
         border: none;
     }
-    .card-img-top{
+    .cad-img-top{
         width: 200px;
         height: 200px;
         border-radius: 10px;
@@ -193,7 +193,7 @@ h6{
         margin: 0;
         float: right;
     }
-    .card{
+    .cad{
         border: none;
     }
     .filter,#mobile-filter{
@@ -228,7 +228,7 @@ h6{
         margin: 0;
         float: right;
     }
-    .card{
+    .cad{
         border: none;
     }
     #off{

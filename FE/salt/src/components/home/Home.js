@@ -16,9 +16,9 @@ export function Home() {
           </button>
           <div className="collapse navbar-collapse" id="navbarColor">
             <ul className="navbar-nav">
-              <li className="nav-item rounded bg-light search-nav-item"><input type="text" id="search" className="bg-light" placeholder="Search bread, cakes, desserts" /><span className="fa fa-search text-muted" /></li>
-              <li className="nav-item"><a className="nav-link" href="#"><span className="fa fa-user-o" /><span className="text">Login</span></a> </li>
-              <li className="nav-item "><a className="nav-link" href="#"><span className="fa fa-shopping-cart" /><span className="text">Cart</span></a> </li>
+              <li className="nav-item rounded bg-light search-nav-item"><input type="text" id="search" className="bg-light" placeholder="Bánh ép, đồ ăn vặt" /><span className="fa fa-search text-muted" /></li>
+              <li className="nav-item"><a className="nav-link" href="/login"><span className="fa fa-user-o" /><span className="text">Login</span></a> </li>
+              <li className="nav-item "><a className="nav-link" href="/cart"><span className="fa fa-shopping-cart" /><span className="text">Cart</span></a> </li>
               <li className="nav-item "><a className="nav-link" href="/header"><span className="fa fa-shopping">Thực đơn</span></a></li>
             </ul>
           </div>
@@ -27,7 +27,10 @@ export function Home() {
           <button className="btn btn-default" type="button" data-toggle="collapse" data-target="#mobile-filter" aria-expanded="true" aria-controls="mobile-filter">Filters<span className="fa fa-filter pl-1" /></button>
         </div>
       </div>
+      <div className="container-fluid">
       <MyCarousel></MyCarousel>
+      </div>
+      
       <div className="home container mt-5">
         <div className="row">
           <div className="col-4">
@@ -62,41 +65,42 @@ export function Home() {
           </div>
         </div>
       </div>
-      {/* menu */}
-      <section id="sidebar">
-        <p> Home | <b>All Breads</b></p>
-        <div className="border-bottom pb-2 ml-2">
-          <h4 id="burgundy">Filters</h4>
-        </div>
-        <div className="py-2 border-bottom ml-3">
-          <h6 className="font-weight-bold">Thực đơn</h6>
-          <div id="orange"><span className="fa fa-minus" /></div>
-          <form>
-            <div className="form-group">
-              {/* <input type="checkbox" id="artisan" /> */}
-              <a href='#products'>Bánh Ép</a>
-            </div>
-            <div className="form-group">
-              {/* <input type="checkbox" id="breakfast" /> */}
-              <a href="#cake">Ăn Vặt</a>
-            </div>
-            <div className="form-group">
-              {/* <input type="checkbox" id="healthy" /> */}
-              <label htmlFor="healthy">Món Khác</label>
-            </div>
-            <div className="form-group">
-              {/* <input type="checkbox" id="healthy" /> */}
-              <label htmlFor="healthy">Giải Khát</label>
-            </div>
-          </form>
-        </div>
+      <div className="container mt-5" style={{backgroundColor:"#f8f9fa", borderRadius:"20px", boxShadow:"4px 8px 9px grey"}}>
+        {/* menu */}
+        <section id="sidebar">
+          <p> Home | <b>All Breads</b></p>
+          <div className="border-bottom pb-2 ml-2">
+            <h4 id="burgundy">Filters</h4>
+          </div>
+          <div className="py-2 border-bottom ml-3">
+            <h6 className="font-weight-bold">Thực đơn</h6>
+            <div id="orange"><span className="fa fa-minus" /></div>
+            <form>
+              <div className="form-group">
+                {/* <input type="checkbox" id="artisan" /> */}
+                <a href='#products'>Bánh Ép</a>
+              </div>
+              <div className="form-group">
+                {/* <input type="checkbox" id="breakfast" /> */}
+                <a href="#cake">Ăn Vặt</a>
+              </div>
+              <div className="form-group">
+                {/* <input type="checkbox" id="healthy" /> */}
+                <label htmlFor="healthy">Món Khác</label>
+              </div>
+              <div className="form-group">
+                {/* <input type="checkbox" id="healthy" /> */}
+                <label htmlFor="healthy">Giải Khát</label>
+              </div>
+            </form>
+          </div>
         </section>
-        <div className="row">
+        <div className="row mt-5 pt-5">
           <div className='col-12' id="products"><h4>Bánh ép</h4></div>
           <div className="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
-            <div className="card">
-              <img className="card-img-top" src="img/shirmpmeat.jpg" />
-              <div className="card-body">
+            <div className="cad">
+              <img className="cad-img-top" src="img/banh.jpg" />
+              <div className="cad-body">
                 <h5><b>Bánh ép tôm - thịt</b> </h5>
                 <div className="d-flex flex-row my-2">
                   <div className="text-muted">29.000/dĩa</div>
@@ -111,9 +115,9 @@ export function Home() {
             </div>
           </div>
           <div className="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
-            <div className="card">
-              <img className="card-img-top" src="img/meat.jpg" />
-              <div className="card-body">
+            <div className="cad">
+              <img className="cad-img-top" src="img/banh.jpg" />
+              <div className="cad-body">
                 <h5><b>Bánh ép thịt</b> </h5>
                 <div className="d-flex flex-row my-2">
                   <div className="text-muted">26.000/dĩa</div>
@@ -128,9 +132,9 @@ export function Home() {
             </div>
           </div>
           <div className="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
-            <div className="card">
-              <img className="card-img-top" src="img/meategg.jpg" />
-              <div className="card-body">
+            <div className="cad">
+              <img className="cad-img-top" src="img/banh.jpg" />
+              <div className="cad-body">
                 <h5><b>Bánh ép thịt - trúng</b> </h5>
                 <div className="d-flex flex-row my-2">
                   <div className="text-muted">29.000/dĩa</div>
@@ -145,9 +149,9 @@ export function Home() {
             </div>
           </div>
           <div className="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
-            <div className="card">
-              <img className="card-img-top" src="img/dry.png" />
-              <div className="card-body">
+            <div className="cad">
+              <img className="cad-img-top" src="img/banh.jpg" />
+              <div className="cad-body">
                 <h5><b>Bánh ép khô</b> </h5>
                 <div className="d-flex flex-row my-2">
                   <div className="text-muted">7.000/cái</div>
@@ -162,9 +166,9 @@ export function Home() {
             </div>
           </div>
           <div className="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
-            <div className="card">
-              <img className="card-img-top" src="img/spiecal.jpg" />
-              <div className="card-body">
+            <div className="cad">
+              <img className="cad-img-top" src="img/banh.jpg" />
+              <div className="cad-body">
                 <h5><b>Bánh ép đặt biệt</b> </h5>
                 <div className="d-flex flex-row my-2">
                   <div className="text-muted">17.000/cái</div>
@@ -179,13 +183,13 @@ export function Home() {
             </div>
           </div>
           <div className="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
-            <div className="card d-relative">
-              <img className="card-img-top" src="img/beaf.jpg" />
-              <div className="card-body">
+            <div className="cad d-relative">
+              <img className="cad-img-top" src="img/banh.jpg" />
+              <div className="cad-body">
                 <h5><b>Bánh ép thịt bò</b> </h5>
-                <div className="rounded bg-white discount" id="orange">10% off</div>
+                {/* <div className="rounded bg-white discount" id="orange">10% off</div> */}
                 <div className="d-flex flex-row my-2">
-                  <div className="text-muted price"><del>29.000</del>26.000/dĩa 2 cái</div>
+                  <div className="text-muted price">26.000/dĩa 2 cái</div>
                   <div className="ml-auto">
                     <button className="border rounded bg-white sign"><span className="fa fa-plus" id="orange" /></button>
                     <span>1 dĩa</span>
@@ -197,116 +201,117 @@ export function Home() {
             </div>
           </div>
           <div className="row" id="cake">
-                                <div className='col-12'><h4>Ăn vặt</h4></div>
-                                <div className="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
-                                    <div className="card">
-                                        <img className="card-img-top" src="img/fried.jpg" />
-                                        <div className="card-body">
-                                            <h5><b>Bánh lọc chiên</b> </h5>
-                                            <div className="d-flex flex-row my-2">
-                                                <div className="text-muted">30.000/dĩa</div>
-                                                <div className="ml-auto">
-                                                    <button className="border rounded bg-white sign"><span className="fa fa-plus" id="orange" /></button>
-                                                    <span className="px-sm-1">1 dĩa</span>
-                                                    <button className="border rounded bg-white sign"><span className="fa fa-minus" id="orange" /></button>
-                                                </div>
-                                            </div>
-                                            <button className="btn w-100 rounded my-2">Thêm vào giỏ hàng</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
-                                    <div className="card">
-                                        <img className="card-img-top" src="img/cakept.jpg" />
-                                        <div className="card-body">
-                                            <h5><b>Tré trộn - bánh phồng tôm</b> </h5>
-                                            <div className="d-flex flex-row my-2">
-                                                <div className="text-muted">52.000/phần</div>
-                                                <div className="ml-auto">
-                                                    <button className="border rounded bg-white sign"><span className="fa fa-plus" id="orange" /></button>
-                                                    <span className="px-sm-1">1 phần</span>
-                                                    <button className="border rounded bg-white sign"><span className="fa fa-minus" id="orange" /></button>
-                                                </div>
-                                            </div>
-                                            <button className="btn w-100 rounded my-2">Thêm vào giỏ hàng</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
-                                    <div className="card">
-                                        <img className="card-img-top" src="img/ram.jpg" />
-                                        <div className="card-body">
-                                            <h5><b>Ram cuốn cải</b> </h5>
-                                            <div className="d-flex flex-row my-2">
-                                                <div className="text-muted">45.000/dĩa</div>
-                                                <div className="ml-auto">
-                                                    <button className="border rounded bg-white sign"><span className="fa fa-plus" id="orange" /></button>
-                                                    <span className="px-sm-1">1 dĩa</span>
-                                                    <button className="border rounded bg-white sign"><span className="fa fa-minus" id="orange" /></button>
-                                                </div>
-                                            </div>
-                                            <button className="btn w-100 rounded my-2">Thêm vào giỏ hàng</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
-                                    <div className="card">
-                                        <img className="card-img-top" src="img/filter.jpg" />
-                                        <div className="card-body">
-                                            <h5><b>Bánh lọc gói</b> </h5>
-                                            <div className="d-flex flex-row my-2">
-                                                <div className="text-muted">50.000/phần</div>
-                                                <div className="ml-auto">
-                                                    <button className="border rounded bg-white sign"><span className="fa fa-plus" id="orange" /></button>
-                                                    <span className="px-sm-1">1 phần</span>
-                                                    <button className="border rounded bg-white sign"><span className="fa fa-minus" id="orange" /></button>
-                                                </div>
-                                            </div>
-                                            <button className="btn w-100 rounded my-2">Thêm vào giỏ hàng</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
-                                    <div className="card">
-                                        <img className="card-img-top" src="img/chicken.jpg" />
-                                        <div className="card-body">
-                                            <h5><b>Chân gà rút xương sốt Thái</b> </h5>
-                                            <div className="d-flex flex-row my-2">
-                                                <div className="text-muted">35.000/dĩa</div>
-                                                <div className="ml-auto">
-                                                    <button className="border rounded bg-white sign"><span className="fa fa-plus" id="orange" /></button>
-                                                    <span className="px-sm-1">1 dĩa</span>
-                                                    <button className="border rounded bg-white sign"><span className="fa fa-minus" id="orange" /></button>
-                                                </div>
-                                            </div>
-                                            <button className="btn w-100 rounded my-2">Thêm vào giỏ hàng</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
-                                    <div className="card d-relative">
-                                        <img className="card-img-top" src="img/potato.png" />
-                                        <div className="card-body">
-                                            <h5><b>Khoai tây chiên</b> </h5>
-                                            <div className="rounded bg-white discount" id="orange">10% off</div>
-                                            <div className="d-flex flex-row my-2">
-                                                <div className="text-muted price"><del>29.000</del>25.000/dĩa 2</div>
-                                                <div className="ml-auto">
-                                                    <button className="border rounded bg-white sign"><span className="fa fa-plus" id="orange" /></button>
-                                                    <span>1 dĩa</span>
-                                                    <button className="border rounded bg-white sign"><span className="fa fa-minus" id="orange" /></button>
-                                                </div>
-                                            </div>
-                                            <button className="btn w-100 rounded my-2">Thêm vào giỏ hàng</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='row' id="products">
-                                <h4>Món khác</h4>
-                            </div>
-                        </div>
-                        <Footer></Footer>
-      </>
-      )
+            <div className='col-12'><h4>Ăn vặt</h4></div>
+            <div className="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
+              <div className="cad">
+                <img className="cad-img-top" src="img/fried.jpg" />
+                <div className="cad-body">
+                  <h5><b>Bánh lọc chiên</b> </h5>
+                  <div className="d-flex flex-row my-2">
+                    <div className="text-muted">30.000/dĩa</div>
+                    <div className="ml-auto">
+                      <button className="border rounded bg-white sign"><span className="fa fa-plus" id="orange" /></button>
+                      <span className="px-sm-1">1 dĩa</span>
+                      <button className="border rounded bg-white sign"><span className="fa fa-minus" id="orange" /></button>
+                    </div>
+                  </div>
+                  <button className="btn w-100 rounded my-2">Thêm vào giỏ hàng</button>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
+              <div className="cad">
+                <img className="cad-img-top" src="img/cakept.jpg" />
+                <div className="cad-body">
+                  <h5><b>Tré trộn - bánh phồng tôm</b> </h5>
+                  <div className="d-flex flex-row my-2">
+                    <div className="text-muted">52.000/phần</div>
+                    <div className="ml-auto">
+                      <button className="border rounded bg-white sign"><span className="fa fa-plus" id="orange" /></button>
+                      <span className="px-sm-1">1 phần</span>
+                      <button className="border rounded bg-white sign"><span className="fa fa-minus" id="orange" /></button>
+                    </div>
+                  </div>
+                  <button className="btn w-100 rounded my-2">Thêm vào giỏ hàng</button>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
+              <div className="cad">
+                <img className="cad-img-top" src="img/ram.jpg" />
+                <div className="cad-body">
+                  <h5><b>Ram cuốn cải</b> </h5>
+                  <div className="d-flex flex-row my-2">
+                    <div className="text-muted">45.000/dĩa</div>
+                    <div className="ml-auto">
+                      <button className="border rounded bg-white sign"><span className="fa fa-plus" id="orange" /></button>
+                      <span className="px-sm-1">1 dĩa</span>
+                      <button className="border rounded bg-white sign"><span className="fa fa-minus" id="orange" /></button>
+                    </div>
+                  </div>
+                  <button className="btn w-100 rounded my-2">Thêm vào giỏ hàng</button>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
+              <div className="cad">
+                <img className="cad-img-top" src="img/filter.jpg" />
+                <div className="cad-body">
+                  <h5><b>Bánh lọc gói</b> </h5>
+                  <div className="d-flex flex-row my-2">
+                    <div className="text-muted">50.000/phần</div>
+                    <div className="ml-auto">
+                      <button className="border rounded bg-white sign"><span className="fa fa-plus" id="orange" /></button>
+                      <span className="px-sm-1">1 phần</span>
+                      <button className="border rounded bg-white sign"><span className="fa fa-minus" id="orange" /></button>
+                    </div>
+                  </div>
+                  <button className="btn w-100 rounded my-2">Thêm vào giỏ hàng</button>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
+              <div className="cad">
+                <img className="cad-img-top" src="img/chicken.jpg" />
+                <div className="cad-body">
+                  <h5><b>Chân gà rút xương sốt Thái</b> </h5>
+                  <div className="d-flex flex-row my-2">
+                    <div className="text-muted">35.000/dĩa</div>
+                    <div className="ml-auto">
+                      <button className="border rounded bg-white sign"><span className="fa fa-plus" id="orange" /></button>
+                      <span className="px-sm-1">1 dĩa</span>
+                      <button className="border rounded bg-white sign"><span className="fa fa-minus" id="orange" /></button>
+                    </div>
+                  </div>
+                  <button className="btn w-100 rounded my-2">Thêm vào giỏ hàng</button>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
+              <div className="cad d-relative">
+                <img className="cad-img-top" src="img/potato.png" />
+                <div className="cad-body">
+                  <h5><b>Khoai tây chiên</b> </h5>
+                  {/* <div className="rounded bg-white discount" id="orange">10% off</div> */}
+                  <div className="d-flex flex-row my-2">
+                    <div className="text-muted price">25.000/dĩa 2</div>
+                    <div className="ml-auto">
+                      <button className="border rounded bg-white sign"><span className="fa fa-plus" id="orange" /></button>
+                      <span>1 dĩa</span>
+                      <button className="border rounded bg-white sign"><span className="fa fa-minus" id="orange" /></button>
+                    </div>
+                  </div>
+                  <button className="btn w-100 rounded my-2">Thêm vào giỏ hàng</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className='row' id="products">
+            <h4>Món khác</h4>
+          </div>
+        </div>
+      </div>
+      <Footer></Footer>
+    </>
+  )
 }
