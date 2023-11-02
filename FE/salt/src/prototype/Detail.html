@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Detail</title>
+  <style>
+    /* body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    } */
+    
+    .product-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #f5f5f5;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: grid;
+      grid-template-columns: 50% 50%;
+      grid-gap: 1px;
+    }
+    
+    .product-container .image-section {
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .product-container .image-section img {
+      max-width: 100%;
+      border-radius: 5px;
+    }
+    
+    .product-container .details-section {
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    
+    .product-container .details-section h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    
+    .product-container .details-section p {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    
+    .product-container .details-section .quantity-section {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .product-container .details-section .quantity-section input {
+      width: 40px;
+      padding: 5px;
+      margin-right: 10px;
+      text-align: center;
+    }
+    
+    .product-container .details-section .quantity-section button {
+      padding: 5px 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .product-container .details-section .quantity-section button:hover {
+      background-color: #0056b3;
+    }
+    
+    .product-container .details-section .action-buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .product-container .details-section .action-buttons button {
+      padding: 12px 24px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 20px;
+      margin: 0px 10px;
+    }
+    
+    .product-container .details-section .action-buttons button:hover {
+      background-color: #0056b3;
+    }
+    
+    .product-container .description-section {
+      padding: 40px;
+    }
+    
+    .product-container .description-section p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="product-container">
+    <div class="image-section">
+      <img src="img/meat.jpg" alt="Example Product">
+    </div>
+    <div class="details-section">
+      <h2>Example Product</h2>
+      <p>Price: $19.99</p>
+      <div class="quantity-section">
+        <input type="number" min="1" value="1">
+        <div>
+          <button onclick="decreaseQuantity()">-</button>
+          <button onclick="increaseQuantity()">+</button>
+        </div>
+      </div>
+      <div class="action-buttons">
+        <button onclick="addToCart()">Add to Cart</button>
+        <button onclick="buyNow()">Buy Now</button>
+      </div>
+    </div>
+  </div>
+  <div class="description-section">
+    <h3>Additional Description</h3>
+    <p>This is an example product with additional description. The product has many great features and benefits.</p>
+  </div>
+
+  <script>
+    function addToCart() {
+      alert('The product has been added to the cart.');
+    }
+
+    function buyNow() {
+      alert('You have successfully purchased the product.');
+    }
+
+    function increaseQuantity() {
+      var quantityInput = document.querySelector('.quantity-section input');
+      var currentQuantity = parseInt(quantityInput.value);
+      quantityInput.value = currentQuantity + 1;
+    }
+
+    function decreaseQuantity() {
+      var quantityInput = document.querySelector('.quantity-sectioninput');
+      var currentQuantity = parseInt(quantityInput.value);
+      if (currentQuantity > 1) {
+        quantityInput.value = currentQuantity - 1;
+      }
+    }
+  </script>
+</body>
+</html>

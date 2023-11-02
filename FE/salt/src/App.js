@@ -6,6 +6,7 @@ import { Login } from './components/home/Login';
 import { Header } from './components/home/Header';
 import { Cart } from './components/home/Cart';
 import { Detail } from './components/home/Detail';
+import ProductDetail from './components/home/ProductDetail';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Route path='/header' element={<Header/>}/>
       <Route path='/cart' element={<Cart/>}/>
       <Route path='/detail' element={<Detail/>}/>
+      <Route path='product' element={<ProductDetail/>}/>
     </Routes>
     </>
   );
