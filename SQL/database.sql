@@ -9,15 +9,7 @@ flag bit default 1
 create table app_user(
 id bigint primary key auto_increment,
 user_name varchar(255) not null,
-`password` varchar(255) not null,
-full_name varchar(255) not null,
-dob date,
-gender bit default 1,
-email varchar(255),
-phone varchar(45) not null,
-address varchar(255) not null,
-id_card varchar(255),
-image varchar(255) 
+`password` varchar(255) not null 
 );
 create table user_role(
 id bigint primary key auto_increment,
@@ -25,6 +17,19 @@ app_role_id bigint not null,
 app_user_id bigint not null,
 foreign key(app_role_id) references app_role(id),
 foreign key(app_user_id) references app_user(id)
+);
+create table customer(
+id bigint primary key auto_increment,
+full_name varchar(255),
+dob date,
+gender bit default 1,
+email varchar(255),
+phone varchar(45) not null,
+address varchar(255) not null,
+id_card varchar(255),
+image varchar(255),
+user_id bigint,
+foreign key(user_id) references app_user(id)
 );
 create table category(
 id bigint primary key auto_increment,
