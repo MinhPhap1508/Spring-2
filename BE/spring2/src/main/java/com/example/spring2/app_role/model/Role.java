@@ -1,14 +1,13 @@
 package com.example.spring2.app_role.model;
 
+import com.example.spring2.user_role.model.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -20,5 +19,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nameRole;
-    private Boolean flag;
+    private Boolean flagDelete;
+    @OneToMany(mappedBy = "role")
+    private Set<UserRole> userRoleSet;
 }
