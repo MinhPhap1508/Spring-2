@@ -8,7 +8,7 @@ export function MyCarousel() {
       <Carousel.Item>
         <img
           className="carousel-image d-block w-100 "
-          src="img/car1.png"
+          src="img/banner.jpg"
           alt="Slide 1"
         />
         <Carousel.Caption>

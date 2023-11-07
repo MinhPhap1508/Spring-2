@@ -24,6 +24,7 @@
 }
 nav{
     padding: 0px 100px;
+    height: 5rem;
 }
 .fa-user-o,.fa-shopping-cart{
     font-size: 20px;

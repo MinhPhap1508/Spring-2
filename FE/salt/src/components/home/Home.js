@@ -2,6 +2,7 @@ import { Card } from "react-bootstrap";
 import { MyCarousel } from "./Carousel";
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Footer } from "./Footer";
+import './cartgt.css'
 
 export function Home() {
 
@@ -28,22 +29,29 @@ export function Home() {
         </div>
       </div>
       <div className="container-fluid">
-      <MyCarousel></MyCarousel>
+        <MyCarousel></MyCarousel>
       </div>
-      
+
       <div className="home container mt-5">
         <div className="row">
           <div className="col-4">
-            <Card.Img src="img/cardhome.jpg"></Card.Img>
+            <Card.Img style={{borderRadius:"15px"}} src="img/cardhome.jpg"></Card.Img>
           </div>
           <div className="col-8">
-            <Card.Title>Từ đam mê đến thành phẩm tuyệt vời nhất</Card.Title>
+            <div class="card-gt float-end">
+              <p class="card-gt-p">Từ đam mê đến thành phẩm tuyệt vời nhất</p>
+              <div class="card-gt-countent">
+                <p>
+                Xuất phát từ nổi niềm đam về với món bánh ép ở quê hương, mình đã đi khắp đà nẵng nhưng không thấy được quán nào mang cái vị mà mình thật sự ưng ý, vì lí đó mình đã tìm hiểu và cho ra đời món bánh được cho là cực hợp ý mình cũng như mang đến vị ngon đậm chất bánh ép Huế nhất có thể.                </p>
+              </div>
+            </div>
+            {/* <Card.Title>Từ đam mê đến thành phẩm tuyệt vời nhất</Card.Title>
             <Card.Text>Xuất phát từ nổi niềm đam về với món bánh ép ở quê hương, mình đã đi khắp đà nẵng nhưng không thấy được quán nào mang cái vị mà mình thật sự ưng ý, vì lí đó mình đã tìm hiểu và cho ra đời món bánh được cho là cực hợp ý mình cũng như mang đến vị ngon đậm chất bánh ép Huế nhất có thể.</Card.Text>
             <Card.Text>Nhà Muối tự hào khi đem đến cho quý khách những món ăn ngon nhất trong tầm giá, với phương châm 3 hợp là:</Card.Text>
             <Card.Text>Hợp khẩu vị mọi nhà <br></br>
               Hợp túi tiền mọi quý khách<br></br>
               Và hợp gu của tất cả các bạn trẻ</Card.Text>
-            <Card.Text>Vì vậy còn chần chờ gì nữa mà không chọn cho mình những món ngon dưới đây nào:</Card.Text>
+            <Card.Text>Vì vậy còn chần chờ gì nữa mà không chọn cho mình những món ngon dưới đây nào:</Card.Text> */}
           </div>
         </div>
       </div>
@@ -65,7 +73,7 @@ export function Home() {
           </div>
         </div>
       </div>
-      <div className="container mt-5" style={{backgroundColor:"#f8f9fa", borderRadius:"20px", boxShadow:"4px 8px 9px grey"}}>
+      <div className="container mt-5" style={{ backgroundColor: "#f8f9fa", borderRadius: "20px", boxShadow: "4px 8px 9px grey" }}>
         {/* menu */}
         <section id="sidebar">
           <p> Home | <b>All Breads</b></p>

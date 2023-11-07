@@ -7,6 +7,9 @@ import { Header } from './components/home/Header';
 import { Cart } from './components/home/Cart';
 import { Detail } from './components/home/Detail';
 import ProductDetail from './components/home/ProductDetail';
+import { Register } from './components/home/Register';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -19,7 +22,9 @@ function App() {
       <Route path='/cart' element={<Cart/>}/>
       <Route path='/detail' element={<Detail/>}/>
       <Route path='product' element={<ProductDetail/>}/>
+      <Route path='/register' element={<Register/>}/>
     </Routes>
+    <ToastContainer/>
     </>
   );
 }
