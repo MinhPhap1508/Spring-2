@@ -3,16 +3,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Ubuntu", sans-serif;
   text-decoration: none;
 }
 
 .form {
+  font-family: "Ubuntu", sans-serif;
   width: 720px;
   height: 500px;
   margin: 100px auto;
   padding: 45px 65px;
   background: linear-gradient(to right, #5193FF, #245FFF);
+  border-radius: 30px;
 }
 .form__box {
   width: 100%;
@@ -70,11 +71,13 @@
   position: relative;
   margin-bottom: 10px;
 }
+.form__password {
+  margin-top: 10px;
+}
 
 input {
   display: block;
   width: 100%;
-  margin-bottom: 25px;
   height: 35px;
   border-radius: 20px;
   border: none;

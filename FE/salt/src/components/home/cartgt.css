@@ -5,13 +5,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 530px;
-    height: 400px;
-    border-radius: 6px;
+    width: 430px;
+    height: 430px;
+    border-radius: 50%;
     transition: .3s;
     /* background-color: #000; */
-    margin-top: 10px;
-    margin-left: 5rem;
+    margin-top: 20px;
+    margin-left: 2rem;
   }
   
   .card-gt-p {
@@ -23,9 +23,9 @@
     content: "";
     position: absolute;
     z-index: -6;
-    border-radius: 6px;
-    width: 530px;
-    height: 410px;
+    border-radius: 50%;
+    width: 430px;
+    height: 420px;
     background-color: #8EC5FC;
     transition: .7s;
     background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
@@ -54,5 +54,199 @@
     transform: rotate(-180deg);
   }
   
-  /* card img  */
+  /* icon navbar  */
+  .collapse .navbar-collapse {
+    size: 40px;
+    float: right;
+  }
+  .nav-item {
+    size: 40px;
+  }
+  .Card {
+    font-family: sans-serif;
+  }
+  /* btn-white */
+  .btn-white {
+    display: inline-flex;
+    align-items: center;
+    color: #141313;
+    border: 1px solid #131212;
+    min-height: 50px;
+    padding: 0px 20px;
+    font-size: 17px;
+    text-transform: uppercase;
+    z-index: 1;
+    position: relative;
+    background-color: transparent;
+    align-items: center;
+  }
+  p {
+    font-family: "display";
+    margin-top: 15px;
+  }
+  
+  .btn-white::before {
+    content: "";
+    /* background-color: #080808; */
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+    display: block;
+    width: 45px;
+    height: 1px;
+    margin-right: 20px;
+  }
+  
+  .btn-white::after {
+    content: "";
+    /* background-color: #131212; */
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+    display: block;
+    width: 0%;
+    height: 100%;
+    right: 0;
+    top: 0;
+    position: absolute;
+    z-index: -1;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+  }
+  
+  .btn-white:hover {
+    color: #0f0f0f;
+    text-decoration: none;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+  }
+  
+  .btn-white:hover::after {
+    width: 100%;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+  }
+  
+  .btn-white:hover::before {
+    background-color: #ebebf0;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+  }
+
+  /* home */
+  .menu {
+    background-color: whitesmoke;
+  }
+  .menus {
+    width: calc(100% - 20px - 20px);
+    padding: 0 50px 0;
+    margin-left: 50px;
+  }
+  .home {
+    box-shadow: 5px 1px 3px 2px #aaa0a0;
+    border-radius: 15px;
+    height: 550px;
+    width: calc(100% - 120px - 100px);
+    margin-left: 100px;
+  
+  }
+
+  /* img-text */
+  /* .image-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .text-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 402px;
+    height: 402px;
+    opacity: 0; */
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+    border-radius: 50%;
+    margin-top: 5.3rem;
+    margin-left: 3.7rem;
+    font-family: monaco; */
+    /* background-color: #8EC5FC; */
+    /* transition: .7s; */
+    /* background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  }
+  .text-overlay::after {
+    content: "";
+    position: absolute;
+    z-index: -6;
+    border-radius: 50%;
+    width: 410px;
+    height: 400px;
+    background-color: #8EC5FC;
+    transition: .7s;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  }
+  
+  .image-container:hover .text-overlay {
+    opacity: 1;
+  }
+  
+  .text-overlay h2 {
+    color: #0c0c0c;
+    font-size: 24px;
+    text-align: center;
+  } */
+
+  
+  /* text-img */
+  .image-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .text-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 402px;
+    height: 402px;
+    opacity: 1; /* Sửa giá trị opacity thành 1 để hiển thị chữ khi bình thường */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+    border-radius: 50%;
+    margin-top: 5.3rem;
+    margin-left: 3.7rem;
+    font-family: monaco;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  }
+  
+  .text-overlay::after {
+    content: "";
+    position: absolute;
+    z-index: -6;
+    border-radius: 50%;
+    width: 410px;
+    height: 400px;
+    background-color: #8EC5FC;
+    transition: .7s;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  }
+  
+  .image-container:hover .text-overlay {
+    opacity: 0; /* Sửa giá trị opacity thành 0 để hiển thị ảnh khi hover vào */
+  }
+  
+  .text-overlay h2 {
+    color: #0c0c0c;
+    font-size: 24px;
+    text-align: center;
+  }
   

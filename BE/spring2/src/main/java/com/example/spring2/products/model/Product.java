@@ -17,8 +17,9 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nameProduct;
-    private Double price;
+    private Integer price;
     private String image;
+    private Boolean flagDelete;
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;

@@ -12,17 +12,17 @@ export function MyCarousel() {
           alt="Slide 1"
         />
         <Carousel.Caption>
-          <h3>Legend 1</h3>
+          {/* <h3>Legend 1</h3> */}
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <img
           className="carousel-image d-block w-100"
-          src="img/car2.jpg"
+          src="img/km3.jpg"
           alt="Slide 2"
         />
         <Carousel.Caption>
-          <h3>Legend 2</h3>
+          {/* <h3>Legend 2</h3> */}
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -32,7 +32,7 @@ export function MyCarousel() {
           alt="Slide 3"
         />
         <Carousel.Caption>
-          <h3>Legend 3</h3>
+          {/* <h3>Legend 3</h3> */}
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

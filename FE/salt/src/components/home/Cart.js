@@ -1,10 +1,13 @@
+import { Footer } from './Footer'
+import { Header } from './Header'
 import './cart.css'
 import "bootstrap/dist/css/bootstrap.css" 
 export function Cart() {
 
     return (
         <>
-            <section className="h-100 h-custom" style={{ backgroundColor: '#d2c9ff' }}>
+        <Header/>
+            <section className="h-100 h-custom mt-5 pt-3" style={{ backgroundColor: '#d2c9ff' }}>
                 <div className="container py-5 h-100">
                     <div className="row d-flex justify-content-center align-items-center h-100">
                         <div className="col-12">
@@ -94,7 +97,7 @@ export function Cart() {
                                                 </div>
                                                 <hr className="my-4" />
                                                 <div className="pt-5">
-                                                    <h6 className="mb-0"><a href="/" className="text-body"><i className="fas fa-long-arrow-alt-left me-2" />Back to shop</a></h6>
+                                                    <h5 className="mb-0"><a href="/" className="text-body" style={{fontFamily:"monaco"}}><i className="fas fa-long-arrow-alt-left me-2" />Quay về trang chủ</a></h5>
                                                 </div>
                                             </div>
                                         </div>
@@ -103,7 +106,7 @@ export function Cart() {
                                                 <h3 className="fw-bold mb-5 mt-2 pt-1">VN PAY</h3>
                                                 <hr className="my-4" />
                                                 <div className="d-flex justify-content-between mb-4">
-                                                    <h5 className="text-uppercase">3 sản phẩm</h5>
+                                                    <h5 className="text-uppercase" style={{fontFamily:"monaco"}}>3 sản phẩm</h5>
                                                     <h5>100.000</h5>
                                                 </div>
                                                 <h5 className="text-uppercase mb-3">Phí ship</h5>
@@ -137,7 +140,7 @@ export function Cart() {
                     </div>
                 </div>
             </section>
-
+            <Footer/>
         </>
     )
 }

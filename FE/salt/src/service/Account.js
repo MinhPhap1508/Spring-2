@@ -20,3 +20,8 @@ export const infoToken = async() => {
         return null;
     }
 }
+
+export const getFullnameById = async (id) => {
+    const res = await axios.get(`http://localhost:8080/api/v1/auth/${id}`)
+    return res;
+}

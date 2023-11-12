@@ -14,9 +14,14 @@ export function Login() {
       console.log("jwt", jwt);
       localStorage.setItem("JWT", jwt.data.token);
       navigate("/")
-      toast.success("Đăng nhập thành công")
+      Swal.fire({
+        icon: "success",
+        title: "Đăng nhập thành công!",
+        showConfirmButton: false,
+        timer: 1500
+    });
     } catch (e) {
-      Swal.fire("Tài khoản không chính xác")
+      Swal.fire("Tài khoản hoặc mật khẩu không chính xác")
     }
   }
   useEffect(() => {
@@ -39,22 +44,22 @@ export function Login() {
           createAccount(values)
         }}
       >
-        <div class="form">
-          <div class="form__box">
-            <div class="form__left">
-              <div class="form__padding"><img class="form__image" src="img/logosalt.jpg" /></div>
+        <div className="form">
+          <div className="form__box">
+            <div className="form__left">
+              <div className="form__padding"><img className="form__image" src="img/logosalt.jpg" /></div>
             </div>
-            <div class="form__right">
-              <div class="form__padding-right">
+            <div className="form__right">
+              <div className="form__padding-right">
                 <Form>
-                  <h1 class="form__title">Thông tin đăng nhập</h1>
-                  <Field class="form__email" name="username" type="text" placeholder="Tài khoản" />
+                  <h1 className="form__title">Thông tin đăng nhập</h1>
+                  <Field className="form__email" name="username" type="text" placeholder="Tài khoản" />
                   <ErrorMessage component="span" name='username' className='text-danger'/>
-                  <Field class="form__password" name="password" type="password" placeholder="******" />
+                  <Field className="form__password" name="password" type="password" placeholder="******" />
                   <ErrorMessage component="span" name='password' className='text-danger'/>
-                  <button class="form__submit-btn" type="submit">Đăng nhập</button>
-                </Form><span>Quên<a class="form__link" href="#">Tài khoản</a><a>/</a><a class="form__link" href="#">Mật khẩu</a></span>
-                <p> <a class="form__link" href="/register">Tạo tài khoản mới</a></p>
+                  <button className="form__submit-btn" type="submit">Đăng nhập</button>
+                </Form><span>Quên: <a className="form__link" href="#">Mật khẩu</a></span>
+                <p> <a className="form__link" href="/register">Tạo tài khoản mới</a></p>
               </div>
             </div>
           </div>
