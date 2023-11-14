@@ -29,4 +29,24 @@ public class ProductService implements IProductService {
     public List<IProductDTo> getProductsByNameSortByPriceDESC(String name, String sortName) {
         return productRepository.getProductsByNameSortByPriceDESC(name, sortName);
     }
+
+    @Override
+    public List<IProductDTo> getProductsByNameSortByPriceASC(String name, String sortName) {
+        return productRepository.getProductsByNameSortByPriceASC(name, sortName);
+    }
+
+    @Override
+    public List<IProductDTo> getBestSeller() {
+        return productRepository.getBestSeller();
+    }
+
+    @Override
+    public IProductDTo getById(Long id) {
+        return productRepository.findProductById(id);
+    }
+
+    @Override
+    public Page<IProductDTo> findAllProduct(Pageable pageable, String searchType) {
+        return productRepository.findAllProductBy(pageable, searchType);
+    }
 }

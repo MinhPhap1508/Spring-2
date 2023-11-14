@@ -52,27 +52,27 @@ app_user_id bigint not null,
 foreign key(product_id) references products(id),
 foreign key(app_user_id) references app_user(id)
 );
-create table `order` (
-id bigint primary key auto_increment,
-order_date datetime,
-flag bit default 1,
-app_user_id bigint not null,
-foreign key(app_user_id) references app_user(id)
-);
 create table delivery(
 id bigint primary key auto_increment,
 name_delivery varchar(255) not null,
 discount varchar(255) not null
 );
+create table `order` (
+id bigint primary key auto_increment,
+order_date datetime,
+ship_extra double not null,
+flag bit default 1,
+app_user_id bigint not null,
+delivery_id bigint not null,
+foreign key(app_user_id) references app_user(id),
+foreign key(delivery_id) references delivery(id)
+);
 create table order_detail (
 id bigint primary key auto_increment,
 quantity int not null,
-ship_extra double not null,
 total_price double not null,
 product_id bigint not null,
 order_id bigint not null,
-delivery_id bigint not null,
 foreign key(product_id) references products(id),
-foreign key(order_id) references `order`(id),
-foreign key(delivery_id) references delivery(id)
+foreign key(order_id) references `order`(id)
 );

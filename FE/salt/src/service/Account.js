@@ -11,7 +11,7 @@ export const register = async(registerRequest) => {
     return res
 }
 
-export const infoToken = async() => {
+export const infoToken = () => {
     const jwtToken = localStorage.getItem("JWT")
     if(jwtToken != null) {
         const decodedToken = jwtDecode(jwtToken);

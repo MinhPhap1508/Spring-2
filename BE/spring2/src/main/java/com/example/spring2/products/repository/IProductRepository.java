@@ -36,11 +36,61 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
 
 
     @Query(value = " SELECT " +
-            " p.id as id," +
-            " p.name_product as nameProduct," +
-            " p.price as priceProduct," +
-            " p.image as image," +
+            " p.id as id, " +
+            " p.name_product as nameProduct, " +
+            " p.price as priceProduct, " +
+            " p.image as image, " +
             " ct.name_category as nameCategory " +
-            " FROM product p ", nativeQuery = true)
-    List<IProductDTo> getProductsByNameSortByPriceDESC(String name, String sortName);
+            " FROM " +
+            " house_salt.product p " +
+            " JOIN " +
+            " house_salt.category ct ON p.category_id = ct.id " +
+            " WHERE " +
+            " p.name_product LIKE :searchName and p.flag_delete = true " +
+            " GROUP BY p.id " +
+            " ORDER BY CASE WHEN :sortName = 'id' THEN p.id and DESC, CASE WHEN :sortName = 'price' THEN p.price_product END DESC", nativeQuery = true)
+    List<IProductDTo> getProductsByNameSortByPriceDESC(@Param("searchName") String name,@Param("sortName") String sortName);
+
+    @Query(value = " SELECT " +
+            " p.id as id, " +
+            " p.name_product as nameProduct, " +
+            " p.price as priceProduct, " +
+            " p.image as image, " +
+            " ct.name_category as nameCategory " +
+            " FROM " +
+            " house_salt.product p " +
+            " JOIN " +
+            " house_salt.category ct ON p.category_id = ct.id " +
+            " WHERE " +
+            " p.name_product LIKE :searchName and p.flag_delete = true " +
+            " GROUP BY p.id " +
+            " ORDER BY CASE WHEN :sortName = 'id' THEN p.id and DESC, CASE WHEN :sortName = 'price' THEN p.price_product END DESC", nativeQuery = true)
+    List<IProductDTo> getProductsByNameSortByPriceASC(@Param("searchName") String name,@Param("sortName") String sortName);
+
+    @Query(value = "SELECT " +
+            " p.id AS id, " +
+            " p.name_product AS nameProduct, " +
+            " p.price AS priceProduct, " +
+            " p.image AS image, " +
+            " SUM(od.quantity) as bestSeller  " +
+            " FROM " +
+            " house_salt.product p" +
+            " JOIN order_detail od ON p.id = od.product_id " +
+            " WHERE p.flag_delete = true" +
+            " GROUP BY p.id, p.name_product, p.price, p.image" +
+            " ORDER BY  SUM(od.quantity) DESC" +
+            " LIMIT 10 ", nativeQuery = true)
+    List<IProductDTo> getBestSeller();
+    @Query(value = "SELECT p.id as id, p.name_product as nameProduct, p.price as priceProduct, p.image " +
+            "FROM house_salt.product p " +
+            " WHERE flag_delete = true and p.id = :id", nativeQuery = true)
+    IProductDTo findProductById(@Param("id") Long id);
+    @Query(value = "select p.id ," +
+            " p.name_product as nameProduct, " +
+            " p.price as priceProduct, p.image," +
+            " ct.name_category as nameCategory " +
+            "FROM product p " +
+            "join category ct on p.category_id = ct.id " +
+            "where p.flag_delete = 1 and name_category like :searchType", nativeQuery = true)
+    Page<IProductDTo> findAllProductBy(Pageable pageable, String searchType);
 }

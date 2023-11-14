@@ -55,7 +55,7 @@ export function Login() {
                   <h1 className="form__title">Thông tin đăng nhập</h1>
                   <Field className="form__email" name="username" type="text" placeholder="Tài khoản" />
                   <ErrorMessage component="span" name='username' className='text-danger'/>
-                  <Field className="form__password" name="password" type="password" placeholder="******" />
+                  <Field className="form__email" name="password" type="password" placeholder="******" />
                   <ErrorMessage component="span" name='password' className='text-danger'/>
                   <button className="form__submit-btn" type="submit">Đăng nhập</button>
                 </Form><span>Quên: <a className="form__link" href="#">Mật khẩu</a></span>

@@ -15,4 +15,9 @@ public interface IProductService {
     List<IProductDTo> getProductsByNameSortByPriceDESC(String name, String sortName);
 
     List<IProductDTo> getProductsByNameSortByPriceASC(String name, String sortName);
+
+    List<IProductDTo> getBestSeller();
+
+    IProductDTo getById(Long id);
+    Page<IProductDTo> findAllProduct(Pageable pageable, String searchType);
 }

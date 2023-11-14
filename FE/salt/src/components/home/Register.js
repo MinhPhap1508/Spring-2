@@ -59,9 +59,9 @@ export function Register() {
                   <h1 className="form__title">Đăng ký tài khoản</h1>
                   <Field className="form__email" name="username" type="text" placeholder="Tài khoản" />
                   <ErrorMessage component="small" name='username' className='text-danger' />
-                  <Field className="form__password" name="password" id="password" type="text" placeholder="******" />
+                  <Field className="form__email" name="password" id="password" type="text" placeholder="******" />
                   <ErrorMessage component="small" name='password' className='text-danger' />
-                  <Field className="form__password" type="password" onblur="inputConfirmPass()" name="confirmPassword" placeholder="Nhập lại mật khẩu" />
+                  <Field className="form__email" type="password" onblur="inputConfirmPass()" name="confirmPassword" placeholder="Nhập lại mật khẩu" />
                   <ErrorMessage component="small" name='confirmPassword' className='text-danger' /><br></br>
                   <button className="form__submit-btn" type="submit">Đăng ký</button>
                   <button style={{ color: "black" }} className="form__submit-btn" type="button"><Link style={{ color: "black", textDecoration: "none" }} to="/login">Quay lại</Link ></button>

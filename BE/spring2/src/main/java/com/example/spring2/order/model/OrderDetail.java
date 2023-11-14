@@ -1,7 +1,6 @@
-package com.example.spring2.order_detail.model;
+package com.example.spring2.order.model;
 
 import com.example.spring2.delivery.model.Delivery;
-import com.example.spring2.order.model.Orders;
 import com.example.spring2.products.model.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,10 +25,6 @@ public class OrderDetail {
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
     @ManyToOne
-    @JoinColumn(name = "delivery_id", referencedColumnName = "id")
-    private Delivery delivery;
-    @ManyToOne
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     private Orders orders;
-
 }
