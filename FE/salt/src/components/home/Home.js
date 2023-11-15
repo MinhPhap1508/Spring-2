@@ -11,7 +11,7 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import { FreeMode, Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { GetAllHome } from "../../service/Home";
+import { GetAllBestseller, GetAllHome } from "../../service/Home";
 
 export function Home() {
   const [product, setProduct] = useState([]);
@@ -20,7 +20,7 @@ export function Home() {
     currency: 'VND'
 })
   const getAll = async () => {
-    const res = await GetAllHome();
+    const res = await GetAllBestseller();
     console.log("res set", res);
     setProduct(res)
   }

@@ -6,7 +6,10 @@ import "bootstrap/dist/css/bootstrap.css"
 import { deleteCart, getCartDetail } from '../../service/CartService'
 import { infoToken } from '../../service/Account'
 import Swal from 'sweetalert2'
+import { Paypal } from '../Paypal'
 export function Cart() {
+    const [checkout, setCheckout] = useState(false);
+
     const [cart, setCart] = useState([])
     const getCart = async () => {
         const res = infoToken();
@@ -30,15 +33,15 @@ export function Cart() {
                 confirmButtonText: "Đồng ý",
                 cancelButtonText: "Huỷ",
             })
-            .then(async (confirm) => {
-                if(confirm.isConfirmed) {
-                    const res = infoToken();
-                    await deleteCart(res.sub, c.id)
-                    Swal.fire("Xóa sản phẩm thành công!", "", "success");
-                    getCart();
-                }
-            })
-        }catch(e) {
+                .then(async (confirm) => {
+                    if (confirm.isConfirmed) {
+                        const res = infoToken();
+                        await deleteCart(res.sub, c.id)
+                        Swal.fire("Xóa sản phẩm thành công!", "", "success");
+                        getCart();
+                    }
+                })
+        } catch (e) {
             console.log(e);
         }
     }
@@ -126,7 +129,13 @@ export function Cart() {
                                                     <h5 className="text-uppercase">Tổng tiền</h5>
                                                     <h5>125.000</h5>
                                                 </div>
-                                                <button type="button" className="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">Thanh toán</button>
+                                                <div>
+                                                    {checkout ? (
+                                                        <Paypal />
+                                                    ) : (
+                                                        <button onClick={() => { setCheckout(true) }} type="button" className="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">Thanh toán</button>
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

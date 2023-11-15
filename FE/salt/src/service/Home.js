@@ -9,3 +9,12 @@ export const GetAllHome = async () => {
         console.log(e);
     }
 }
+export const GetAllBestseller = async () => {
+    try{
+        const res = await axios.get(`http://localhost:8080/api/v1/auth/product/bestsellers`)
+        console.log("res",res);
+        return res.data;
+    }catch(e){
+        console.log(e);
+    }
+}

@@ -28,6 +28,7 @@ export function List() {
         setProductTypeList(res);
     }
     useEffect(() => {
+      document.title = "Nhà Muối"
         loadTypeList()
     },[])
     const loadProductList = async () => {
@@ -92,7 +93,7 @@ export function List() {
             <div className="container" style={{ marginTop: "8rem", backgroundColor: "#f8f9fa", borderRadius: "20px", boxShadow: "4px 8px 9px grey" }}>
                 {/* menu */}
                 <section id="sidebar">
-                    <p> Trang chủ | <b>Thực đơn</b></p>
+                    <p> Nhà Muối | <b>Thực đơn</b></p>
                     <div className="border-bottom pb-2 ml-2" onClick={() => searchTypeProduct("")}>
                         <h4 id="burgundy">Lọc</h4>
                     </div>
@@ -105,6 +106,7 @@ export function List() {
                             <li className="form-group"
                             key={pt.idCate}
                             onClick={() => searchTypeProduct(pt.nameCategory)}
+                            style={{cursor:"pointer"}}
                             >
                              {pt.nameCategory}   
                             </li>
@@ -164,11 +166,11 @@ export function List() {
                     </button>
                   </div>
                   
-                  <span>
+                  {/* <span>
                     <a>
                       {page + 1}/{totalPage}
                     </a>
-                  </span>
+                  </span> */}
                  
                   <div>
                     <button

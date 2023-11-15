@@ -72,13 +72,13 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             " p.name_product AS nameProduct, " +
             " p.price AS priceProduct, " +
             " p.image AS image, " +
-            " SUM(od.quantity) as bestSeller  " +
+            " SUM(od.quantity_order) as bestSeller  " +
             " FROM " +
             " house_salt.product p" +
             " JOIN order_detail od ON p.id = od.product_id " +
             " WHERE p.flag_delete = true" +
             " GROUP BY p.id, p.name_product, p.price, p.image" +
-            " ORDER BY  SUM(od.quantity) DESC" +
+            " ORDER BY  SUM(od.quantity_order) DESC" +
             " LIMIT 10 ", nativeQuery = true)
     List<IProductDTo> getBestSeller();
     @Query(value = "SELECT p.id as id, p.name_product as nameProduct, p.price as priceProduct, p.image " +
