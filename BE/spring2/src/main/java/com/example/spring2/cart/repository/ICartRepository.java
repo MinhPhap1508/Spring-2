@@ -38,6 +38,17 @@ public interface ICartRepository extends JpaRepository<Cart, Long> {
             " FROM cart c " +
             " WHERE c.product_id = :id AND c.app_user_id = :appId ", nativeQuery = true)
     Long getCartByIds(Long appId, Long id);
-
-
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE cart c " +
+            "SET c.quantity_cart = c.quantity_cart + 1 " +
+            "WHERE c.product_id = :id AND c.app_user_id = :appId", nativeQuery = true)
+    void increaseQuantity(Long appId, Long id);
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE cart c " +
+            "SET c.quantity_cart = c.quantity_cart - 1 " +
+            "WHERE c.product_id = :id AND c.app_user_id = :appId " +
+            "AND c.quantity_cart >= 1", nativeQuery = true)
+    void decreaseQuantity(Long appId, Long id);
 }

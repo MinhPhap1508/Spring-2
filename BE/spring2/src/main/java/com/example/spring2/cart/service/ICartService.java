@@ -13,4 +13,9 @@ public interface ICartService {
     void deleteCart(Long id, String username);
 
     Long getCartById(String username, Long productId);
+
+
+    void increaseQuantity(String username, Long id);
+
+    void decreaseQuantity(String username, Long id);
 }

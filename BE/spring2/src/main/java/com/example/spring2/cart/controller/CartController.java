@@ -38,4 +38,18 @@ public class CartController {
         cartService.deleteCart(id, username);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PostMapping("/increase-quantity")
+    public ResponseEntity<?> increaseQuantity(@RequestParam String username,
+                                              @RequestParam Long id) {
+        cartService.increaseQuantity(username, id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/decrease-quantity")
+    public ResponseEntity<?> decreaseQuantity(@RequestParam String username,
+                                              @RequestParam Long id) {
+        cartService.decreaseQuantity(username, id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

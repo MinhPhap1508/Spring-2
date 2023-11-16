@@ -3,7 +3,7 @@ import { Footer } from './Footer'
 import { Header } from './Header'
 import './cart.css'
 import "bootstrap/dist/css/bootstrap.css"
-import { deleteCart, getCartDetail } from '../../service/CartService'
+import { decrease, deleteCart, getCartDetail, increase } from '../../service/CartService'
 import { infoToken } from '../../service/Account'
 import Swal from 'sweetalert2'
 import { Paypal } from '../Paypal'
@@ -11,6 +11,25 @@ export function Cart() {
     const [checkout, setCheckout] = useState(false);
 
     const [cart, setCart] = useState([])
+    const [quantity, setQuantity] = useState(1);
+
+    const handleIncrease = async (c) => {
+        setQuantity(quantity + 1);
+        const res = infoToken();
+        await increase(res.sub, c.id)
+        getCart()
+
+    }
+
+    const handleDecrease = async (c) => {
+        if (quantity > 1) {
+            setQuantity(quantity - 1);
+        }
+        const res = infoToken();
+        await decrease(res.sub, c.id)
+        getCart();
+    }
+
     const getCart = async () => {
         const res = infoToken();
         console.log("sub", res);
@@ -19,8 +38,8 @@ export function Cart() {
             console.log("ress", ress);
             setCart(ress.data);
         }
-
     }
+
     const handleDelete = async (c) => {
         try {
             Swal.fire({
@@ -80,11 +99,16 @@ export function Cart() {
                                                                 <h6 className="text-black mb-0">Bánh ép</h6>
                                                             </div>
                                                             <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                                                <button className="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                                <button className="btn btn-link px-2" onClick={() => handleDecrease(c)}>
                                                                     <i className="fas fa-minus" />
                                                                 </button>
-                                                                <input id="form1" min={0} name="quantity" defaultValue={1} type="number" className="form-control form-control-sm" />
-                                                                <button className="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                                <input style={{ textAlign: "center" }}
+                                                                    id={`input-quantity${c.id}`}
+                                                                    min="1"
+                                                                    max = "20" name="quantity"
+                                                                    defaultValue={c.quantity} disabled
+                                                                    className="form-control form-control-sm" />
+                                                                <button className="btn btn-link px-2" onClick={() => handleIncrease(c)}>
                                                                     <i className="fas fa-plus" />
                                                                 </button>
                                                             </div>

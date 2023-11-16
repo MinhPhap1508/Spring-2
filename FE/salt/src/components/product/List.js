@@ -151,7 +151,7 @@ export function List() {
 
 
                 </div>
-                <div className="row">
+                <div className="row pb-3">
             <div className="col-lg-12 text-center">
               <div className="pagination-wrap d-flex justify-content-center text-center">
                 
