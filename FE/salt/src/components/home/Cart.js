@@ -3,32 +3,84 @@ import { Footer } from './Footer'
 import { Header } from './Header'
 import './cart.css'
 import "bootstrap/dist/css/bootstrap.css"
-import { decrease, deleteCart, getCartDetail, increase } from '../../service/CartService'
+import { addCart, decrease, deleteCart, getAllDelivery, getCartDetail, increase } from '../../service/CartService'
 import { infoToken } from '../../service/Account'
 import Swal from 'sweetalert2'
 import { Paypal } from '../Paypal'
+import { Field } from 'formik'
 export function Cart() {
     const [checkout, setCheckout] = useState(false);
+    const vnd = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    })
 
     const [cart, setCart] = useState([])
-    const [quantity, setQuantity] = useState(1);
+    const [delivery, setDelivery] = useState([]);
+    const [selectedDelivery, setSelectedDelivery] = useState(null);
+    // const [quantity, setQuantity] = useState(1);
+
+    const getDelivery = async () => {
+        const res = await getAllDelivery();
+        setDelivery(res);
+    }
+    const handleDeliveryChange = (event) => {
+        const selectedOption = event.target.value;
+        const selectedDelivery = delivery.find(item => item.name === selectedOption);
+        setSelectedDelivery(selectedDelivery);
+    }
 
     const handleIncrease = async (c) => {
-        setQuantity(quantity + 1);
+        let quantity = document.getElementById("input-quantity" + c.id)
+        // setQuantity(quantity + 1);
+        quantity.value = parseInt(quantity.value) + 1;
         const res = infoToken();
-        await increase(res.sub, c.id)
-        getCart()
-
+        // await increase(res.sub, c.id)
+        await addCart(1, res.sub, c.id)
+        getCart();
+    }
+    const tang = async (productId) => {
+        const res = infoToken();
+        await addCart(1, res.sub, productId)
+        getCart();
     }
 
     const handleDecrease = async (c) => {
-        if (quantity > 1) {
-            setQuantity(quantity - 1);
+        let quantity = document.getElementById("input-quantity" + c.id)
+        try {
+            if (quantity.value <= 1) {
+                Swal.fire({
+                    title: "Bạn có muốn xóa sản phẩm này khỏi giỏ hàng không?",
+                    text: c.name,
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Đồng ý",
+                    cancelButtonText: "Huỷ",
+                })
+                    .then(async (confirm) => {
+                        if (confirm.isConfirmed) {
+                            const res = infoToken();
+                            await deleteCart(res.sub, c.id)
+                            Swal.fire("Xóa sản phẩm thành công!", "", "success");
+                            getCart();
+                        }
+                    })
+            }
+            if (quantity.value > 1) {
+                // setQuantity(quantity - 1);
+                quantity.value = parseInt(quantity.value) - 1;
+                const res = infoToken();
+                await decrease(res.sub, c.id)
+                getCart();
+            }
+
+        } catch (e) {
+            console.log(e);
         }
-        const res = infoToken();
-        await decrease(res.sub, c.id)
-        getCart();
-    }
+
+    };
 
     const getCart = async () => {
         const res = infoToken();
@@ -66,6 +118,7 @@ export function Cart() {
     }
     useEffect(() => {
         getCart();
+        getDelivery();
     }, [])
 
     return (
@@ -89,14 +142,12 @@ export function Cart() {
                                                         <hr className="my-4" />
                                                         <div className="row mb-4 d-flex justify-content-between align-items-center">
 
-
-
                                                             <div className="col-md-2 col-lg-2 col-xl-2">
                                                                 <img src={c.image} className="img-fluid rounded-3" alt="Cotton T-shirt" />
                                                             </div>
                                                             <div className="col-md-3 col-lg-3 col-xl-3">
                                                                 <h6 className="text-muted">{c.name}</h6>
-                                                                <h6 className="text-black mb-0">Bánh ép</h6>
+                                                                {/* <h6 className="text-black mb-0">Bánh ép</h6> */}
                                                             </div>
                                                             <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
                                                                 <button className="btn btn-link px-2" onClick={() => handleDecrease(c)}>
@@ -105,7 +156,7 @@ export function Cart() {
                                                                 <input style={{ textAlign: "center" }}
                                                                     id={`input-quantity${c.id}`}
                                                                     min="1"
-                                                                    max = "20" name="quantity"
+                                                                    max="20" name="quantity"
                                                                     defaultValue={c.quantity} disabled
                                                                     className="form-control form-control-sm" />
                                                                 <button className="btn btn-link px-2" onClick={() => handleIncrease(c)}>
@@ -113,7 +164,7 @@ export function Cart() {
                                                                 </button>
                                                             </div>
                                                             <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                                                <h6 className="mb-0">{c.price}</h6>
+                                                                <h6 className="mb-0">{vnd.format(c.price * c.quantity)}</h6>
                                                             </div>
                                                             <div className="col-md-1 col-lg-1 col-xl-1 text-end">
                                                                 <span onClick={() => handleDelete(c, c.name)} className="text-muted"><i className="fas fa-times" /></span>
@@ -140,12 +191,25 @@ export function Cart() {
                                                 </div>
                                                 <h5 className="text-uppercase mb-3">Phí ship</h5>
                                                 <div className="mb-4 pb-2">
-                                                    <select className="select">
+
+                                                    <select onChange={handleDeliveryChange}>
+                                                        <option value="">Chọn đơn vị vận chuyển</option>
+                                                        {delivery.map(item => (
+                                                            <option key={item.name} value={item.name}>{item.name}</option>
+                                                        ))}
+                                                    </select>
+                                                    {selectedDelivery && (
+                                                        <div>
+                                                            <h3 style={{ color: "red" }}>Tên đơn vị vận chuyển: {selectedDelivery.name}</h3>
+                                                            <p>Giá: {selectedDelivery.price}</p>
+                                                        </div>
+                                                    )}
+                                                    {/* <select className="select">
                                                         <option value={1}>Giao hàng tiết kiệm</option>
                                                         <option value={2}>Giao hàng nhanh</option>
                                                         <option value={3}>Giao hàng cấp tốc</option>
 
-                                                    </select>
+                                                    </select> */}
                                                 </div>
 
                                                 <hr className="my-4" />

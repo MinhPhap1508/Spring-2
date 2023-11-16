@@ -58,7 +58,6 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(categoryList, HttpStatus.OK);
-
     }
 
     @GetMapping("/home")

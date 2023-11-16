@@ -76,8 +76,8 @@ export function List() {
         if (res != null) {
             const result = await addCart(1, res.sub, p.id)
             console.log("res kt ii p", result);
-            if (result.status == 204) {
-                toast("Sản phẩm đã có trong giỏ hàng!")
+            if (result.status == 200) {
+                toast("Thêm 1 sản phẩm nữa")
             } if (result.status == 201) {
                 toast("Thêm vào giỏ hàng thành công")
             }

@@ -5,6 +5,8 @@ import com.example.spring2.app_user.repository.IAppUserRepository;
 import com.example.spring2.cart.model.Cart;
 import com.example.spring2.cart.model.ICartDto;
 import com.example.spring2.cart.repository.ICartRepository;
+import com.example.spring2.delivery.model.Delivery;
+import com.example.spring2.delivery.repository.IDeliveryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,8 @@ public class CartService implements ICartService{
     private ICartRepository cartRepository;
     @Autowired
     IAppUserRepository appUserRepository;
+    @Autowired
+    private IDeliveryRepository deliveryRepository;
     @Override
     public List<ICartDto> getCartDetail(String username) {
         AppUser appUser = appUserRepository.getAccountByUserName(username);
@@ -50,6 +54,11 @@ public class CartService implements ICartService{
     public void decreaseQuantity(String username, Long id) {
         AppUser appUser = appUserRepository.getAccountByUserName(username);
         cartRepository.decreaseQuantity(appUser.getId(), id);
+    }
+
+    @Override
+    public List<Delivery> getAllDelivery() {
+        return deliveryRepository.getAllDelivery();
     }
 
 

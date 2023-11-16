@@ -2,6 +2,7 @@ package com.example.spring2.cart.repository;
 
 import com.example.spring2.cart.model.Cart;
 import com.example.spring2.cart.model.ICartDto;
+import com.example.spring2.delivery.model.Delivery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -51,4 +52,5 @@ public interface ICartRepository extends JpaRepository<Cart, Long> {
             "WHERE c.product_id = :id AND c.app_user_id = :appId " +
             "AND c.quantity_cart >= 1", nativeQuery = true)
     void decreaseQuantity(Long appId, Long id);
+
 }

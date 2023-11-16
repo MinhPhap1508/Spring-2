@@ -3,6 +3,8 @@ package com.example.spring2.cart.controller;
 import com.example.spring2.cart.model.Cart;
 import com.example.spring2.cart.model.ICartDto;
 import com.example.spring2.cart.service.ICartService;
+import com.example.spring2.delivery.model.Delivery;
+import com.example.spring2.products.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +30,8 @@ public class CartController {
                                      @RequestParam Long productId){
         Long cart = cartService.getCartById(username, productId);
         if(cart != null) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            cartService.increaseQuantity(username, productId);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
          cartService.addCart(quantity, username, productId);
          return new ResponseEntity<>(HttpStatus.CREATED);
@@ -51,5 +54,13 @@ public class CartController {
                                               @RequestParam Long id) {
         cartService.decreaseQuantity(username, id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @GetMapping("/delivery")
+    public ResponseEntity<List<Delivery>> getAllCategory() {
+        List<Delivery> deliveryList = cartService.getAllDelivery();
+        if(deliveryList.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(deliveryList, HttpStatus.OK);
     }
 }

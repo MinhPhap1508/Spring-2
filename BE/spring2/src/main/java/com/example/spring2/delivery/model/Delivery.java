@@ -20,4 +20,5 @@ public class Delivery {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nameDelivery;
+    private Integer priceDelivery;
 }

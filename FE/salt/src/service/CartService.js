@@ -20,3 +20,7 @@ export const increase = async(username, id) => {
 export const decrease = async(username, id) => {
     await axios.post(`http://localhost:8080/cart/decrease-quantity?username=${username}&id=${id}`)
 }
+export const getAllDelivery = async () => {
+    const res = await axios.get("http://localhost:8080/cart/delivery")
+    return res.data
+}
