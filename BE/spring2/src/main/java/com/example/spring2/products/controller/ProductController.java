@@ -77,6 +77,11 @@ public class ProductController {
         }
         return new ResponseEntity<>(bestSellersList, HttpStatus.OK);
     }
+    @GetMapping("/thesame")
+    public ResponseEntity<?> getProductByCategory(@RequestParam Long id) {
+        List<IProductDTo> bestSellersList = productService.getProduct(id);
+        return new ResponseEntity<>(bestSellersList, HttpStatus.OK);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> detail(@PathVariable("id") Long id) {

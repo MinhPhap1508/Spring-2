@@ -14,9 +14,8 @@ public class OrderController {
     private IOrderService orderService;
 @PostMapping("/create-order")
     public ResponseEntity<?> createOrder(@RequestBody OrderDetailDto orderDetailDto,
-                                         @RequestParam String username,
-                                         @RequestParam Long deliveryId) {
-        orderService.createOrders(orderDetailDto, username, deliveryId);
+                                         @RequestParam String username) {
+        orderService.createOrders(orderDetailDto, username);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

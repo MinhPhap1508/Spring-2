@@ -19,7 +19,7 @@ export function Paypal(props) {
                         intent: "CAPTURE",
                         purchase_units: [
                             {
-                                description: "Very dicelious",
+                                description: "Bánh ép Huế nhà Muối",
                                 amount: {
                                     currency_code: "USD",
                                     value: priceUse,

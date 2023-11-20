@@ -123,25 +123,6 @@ export function Home() {
                       <SwiperSlide>
                         <div className="item mt-5">
                           <div className="thumb">
-                            {/* <div className="hover-content">
-                              <ul>
-                                <li>
-                                  <a href="single-product.html">
-                                    <i className="fa fa-eye" />
-                                  </a>
-                                </li>
-                                <li>
-                                  <a href="single-product.html">
-                                    <i className="fa fa-star" />
-                                  </a>
-                                </li>
-                                <li>
-                                  <a href="single-product.html">
-                                    <i className="fa fa-shopping-cart" />
-                                  </a>
-                                </li>
-                              </ul>
-                            </div> */}
                             <img style={{ height: "320px", width: "430px", objectFit:"cover", borderRadius:"20px" }}
                               src={p.image}
                               alt="" />

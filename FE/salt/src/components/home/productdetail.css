@@ -1,5 +1,6 @@
     .product-container {
         max-width: 800px;
+        height: 500px;
         margin: 0 auto;
         background-color: #f5f5f5;
         border-radius: 5px;
@@ -47,10 +48,12 @@
       }
       
       .product-container .details-section .quantity-section input {
-        width: 40px;
+        width: 60px;
         padding: 5px;
-        margin-right: 10px;
+        margin-right: 15px;
         text-align: center;
+        border-radius: 10px;
+        border: 1px solid orange;
       }
       
       .product-container .details-section .quantity-section button {

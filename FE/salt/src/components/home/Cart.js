@@ -207,7 +207,7 @@ export function Cart() {
 
                                                 <hr className="my-4" />
                                                 <div className="pt-5">
-                                                    <h5 className="mb-0"><a href="/" className="text-body" style={{ fontFamily: "monaco" }}><i className="fas fa-long-arrow-alt-left me-2" />Quay về trang chủ</a></h5>
+                                                    <h5 className="mb-0"><a href="/list" className="text-body" style={{ fontFamily: "monaco" }}><i className="fas fa-long-arrow-alt-left me-2" />Quay về</a></h5>
                                                 </div>
                                             </div>
                                         </div>

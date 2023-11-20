@@ -22,12 +22,12 @@ public class OrderService implements IOrderService {
     private ICartRepository cartRepository;
 
     @Override
-    public void createOrders(OrderDetailDto orderDetailDto, String username, Long deliveryId) {
+    public void createOrders(OrderDetailDto orderDetailDto, String username) {
         LocalDate localDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String formatterDate = localDate.format(formatter);
         AppUser appUser = appUserRepository.getAccountByUserName(username);
-        ordersRepository.createOrder(formatterDate, appUser.getId(), deliveryId);
+        ordersRepository.createOrder(formatterDate, appUser.getId());
         Long idOrder = ordersRepository.getIdMaxForOrder();
         for (CartDto c : orderDetailDto.getCartDtoList()) {
             cartRepository.deleteCart(c.getId(), appUser.getId());
