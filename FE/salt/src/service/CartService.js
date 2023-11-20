@@ -24,3 +24,7 @@ export const getAllDelivery = async () => {
     const res = await axios.get("http://localhost:8080/cart/delivery")
     return res.data
 }
+export const createOrder = async (cart, username) => {
+    const res = await axios.post(`http://localhost:8080/create-order?username=${username}`, cart)
+    return res;
+}

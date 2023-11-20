@@ -24,7 +24,6 @@ public class Customer {
     private String phone;
     private String address;
     private String idCard;
-    private String image;
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private AppUser appUser;

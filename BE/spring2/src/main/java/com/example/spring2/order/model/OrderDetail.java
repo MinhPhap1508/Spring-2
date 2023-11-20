@@ -19,8 +19,9 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer quantityOrder;
-    private Double shipExtra;
+
     private Double priceOrder;
+    private Boolean isFlag;
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;

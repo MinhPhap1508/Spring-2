@@ -29,6 +29,7 @@ public class CartController {
                                      @RequestParam String username,
                                      @RequestParam Long productId){
         Long cart = cartService.getCartById(username, productId);
+
         if(cart != null) {
             cartService.increaseQuantity(username, productId);
             return new ResponseEntity<>(HttpStatus.OK);

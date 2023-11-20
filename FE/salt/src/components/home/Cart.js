@@ -8,6 +8,8 @@ import { infoToken } from '../../service/Account'
 import Swal from 'sweetalert2'
 import { Paypal } from '../Paypal'
 import { Field } from 'formik'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 export function Cart() {
     const [checkout, setCheckout] = useState(false);
     const vnd = new Intl.NumberFormat('vi-VN', {
@@ -16,32 +18,58 @@ export function Cart() {
     })
 
     const [cart, setCart] = useState([])
+    const [customer, setCustomer] = useState();
     const [delivery, setDelivery] = useState([]);
     const [selectedDelivery, setSelectedDelivery] = useState(null);
+    const [selectedDeliveryPrice, setSelectedDeliveryPrice] = useState(0);
+    const navigate = useNavigate();
     // const [quantity, setQuantity] = useState(1);
 
     const getDelivery = async () => {
         const res = await getAllDelivery();
+        console.log("deli", res);
         setDelivery(res);
     }
-    const handleDeliveryChange = (event) => {
-        const selectedOption = event.target.value;
-        const selectedDelivery = delivery.find(item => item.name === selectedOption);
-        setSelectedDelivery(selectedDelivery);
+     const totalPriceProduct = cart.reduce((acc, item) => {
+        return acc + (item.price * item.quantity)
+     }, 0);
+     const totalPrice = selectedDeliveryPrice + totalPriceProduct;
+     const handleDeliveryChange = (event) => {
+        const selectedDeliveryName = event.target.value;
+        const selectedDelivery = delivery.find(item => item.nameDelivery === selectedDeliveryName);
+        
+        if (selectedDelivery) {
+          setSelectedDeliveryPrice(selectedDelivery.priceDelivery);
+        } else {
+          setSelectedDeliveryPrice(0);
+        }
+      };
+    //   const getCustomer = async() => {
+    //     const res = infoToken();
+    //     if(res != null) {
+    //         const response = await axios.get(``)
+    //     }
+    //   }
+    const addToOrder = async () => {
+
     }
 
-    const handleIncrease = async (c) => {
-        let quantity = document.getElementById("input-quantity" + c.id)
-        // setQuantity(quantity + 1);
+    const handleIncrease = async (co) => {
+        let quantity = document.getElementById("input-quantity" + co.id)
         quantity.value = parseInt(quantity.value) + 1;
         const res = infoToken();
         // await increase(res.sub, c.id)
-        await addCart(1, res.sub, c.id)
+        await addCart(2, res.sub, co.id)
         getCart();
     }
     const tang = async (productId) => {
         const res = infoToken();
         await addCart(1, res.sub, productId)
+        getCart();
+    }
+    const giam = async (productId) => {
+        const res = infoToken();
+        await addCart(-1, res.sub, productId);
         getCart();
     }
 
@@ -120,6 +148,7 @@ export function Cart() {
         getCart();
         getDelivery();
     }, [])
+    
 
     return (
         <>
@@ -157,9 +186,10 @@ export function Cart() {
                                                                     id={`input-quantity${c.id}`}
                                                                     min="1"
                                                                     max="20" name="quantity"
+                                                                    value={c.quantity}
                                                                     defaultValue={c.quantity} disabled
                                                                     className="form-control form-control-sm" />
-                                                                <button className="btn btn-link px-2" onClick={() => handleIncrease(c)}>
+                                                                <button className="btn btn-link px-2" onClick={() => tang(c.id)}>
                                                                     <i className="fas fa-plus" />
                                                                 </button>
                                                             </div>
@@ -184,42 +214,38 @@ export function Cart() {
                                         <div className="col-lg-4 bg-grey">
                                             <div className="p-5">
                                                 <h3 className="fw-bold mb-5 mt-2 pt-1">Thông tin cá nhân</h3>
+
                                                 <hr className="my-4" />
                                                 <div className="d-flex justify-content-between mb-4">
                                                     <h5 className="text-uppercase" style={{ fontFamily: "monaco" }}>3 sản phẩm</h5>
-                                                    <h5>100.000</h5>
+                                                    <h5>{vnd.format(totalPriceProduct)}</h5>
                                                 </div>
-                                                <h5 className="text-uppercase mb-3">Phí ship</h5>
+                                                <h5 className="text-uppercase mb-3">Chọn đơn vị vận chuyển</h5>
                                                 <div className="mb-4 pb-2">
 
                                                     <select onChange={handleDeliveryChange}>
                                                         <option value="">Chọn đơn vị vận chuyển</option>
                                                         {delivery.map(item => (
-                                                            <option key={item.name} value={item.name}>{item.name}</option>
+                                                            <option key={item.name} value={item.nameDelivery}>{item.nameDelivery}</option>
                                                         ))}
                                                     </select>
-                                                    {selectedDelivery && (
-                                                        <div>
-                                                            <h3 style={{ color: "red" }}>Tên đơn vị vận chuyển: {selectedDelivery.name}</h3>
-                                                            <p>Giá: {selectedDelivery.price}</p>
+                                                    {selectedDeliveryPrice && (
+                                                        <div className='mt-5 d-flex' style={{fontFamily:"display"}}>
+                                                            <h4>Phí vận chuyển:</h4>
+                                                            <span style={{marginLeft:"6.2rem", fontSize:"22px"}}>{vnd.format(selectedDeliveryPrice)}</span>
                                                         </div>
                                                     )}
-                                                    {/* <select className="select">
-                                                        <option value={1}>Giao hàng tiết kiệm</option>
-                                                        <option value={2}>Giao hàng nhanh</option>
-                                                        <option value={3}>Giao hàng cấp tốc</option>
-
-                                                    </select> */}
+                                                
                                                 </div>
 
                                                 <hr className="my-4" />
                                                 <div className="d-flex justify-content-between mb-5">
                                                     <h5 className="text-uppercase">Tổng tiền</h5>
-                                                    <h5>125.000</h5>
+                                                    <h5>{vnd.format(totalPrice)}</h5>
                                                 </div>
                                                 <div>
                                                     {checkout ? (
-                                                        <Paypal />
+                                                        <Paypal props1 = {totalPrice} props2 = {cart} />
                                                     ) : (
                                                         <button onClick={() => { setCheckout(true) }} type="button" className="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">Thanh toán</button>
                                                     )}
