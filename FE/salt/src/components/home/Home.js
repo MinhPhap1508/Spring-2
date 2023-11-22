@@ -49,7 +49,7 @@ export function Home() {
                 Hợp túi tiền mọi quý khách<br></br>
                 Và hợp gu của tất cả các bạn trẻ</h2>
             </div>
-            <Card.Img style={{ borderRadius: "50%", marginLeft: "3rem", marginTop: "5.3rem", height: "400px", width: "400px", objectFit: "cover" }} src="img/boss1.jpg"></Card.Img>
+            <Card.Img style={{ borderRadius: "50%", marginLeft: "3rem", marginTop: "5.3rem", height: "400px", width: "400px", objectFit: "cover" }} src="img/boss.jpg"></Card.Img>
 
           </div>
           <div className="col-4 mt-5">

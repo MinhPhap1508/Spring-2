@@ -11,6 +11,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Menu } from './components/home/Menu';
 import { List } from './components/product/List';
+import { History } from './components/orders/History';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
       <Route path='/product/:id' element={<ProductDetail/>}/>
       <Route path='/register' element={<Register/>}/>
       <Route path='/list' element={<List/>}/>
+      <Route path='history' element={<History/>}/>
     </Routes>
     <ToastContainer/>
     </>

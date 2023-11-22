@@ -4,9 +4,12 @@ import com.example.spring2.app_user.model.AppUser;
 import com.example.spring2.app_user.repository.IAppUserRepository;
 import com.example.spring2.cart.model.CartDto;
 import com.example.spring2.cart.repository.ICartRepository;
+import com.example.spring2.order.model.IOrderDto;
 import com.example.spring2.order.model.OrderDetailDto;
 import com.example.spring2.order.repository.IOrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -33,5 +36,11 @@ public class OrderService implements IOrderService {
             cartRepository.deleteCart(c.getId(), appUser.getId());
             ordersRepository.createOrderDetail(c.getPrice(), c.getQuantity(), idOrder, c.getId());
         }
+    }
+
+    @Override
+    public Page<IOrderDto> getListOrder(String username, Pageable pageable) {
+        AppUser appUser = appUserRepository.getAccountByUserName(username);
+        return ordersRepository.getListOrder(appUser.getId(),pageable);
     }
 }

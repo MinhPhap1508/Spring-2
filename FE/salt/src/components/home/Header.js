@@ -5,7 +5,7 @@ import { Dropdown, DropdownButton } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { infoToken } from "../../service/Account";
 import { BsInfoSquare } from "react-icons/bs";
-import { BiLogOut } from "react-icons/bi";
+import { BiLogOut, BiHistory } from "react-icons/bi";
 import Swal from "sweetalert2";
 export function Header() {
 
@@ -69,6 +69,9 @@ export function Header() {
                               <span><AiOutlineUser />{userName}</span>
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
+                              <Dropdown.Item href="/history">
+                                <span><BiHistory /> Lịch sử đặt hàng</span>
+                              </Dropdown.Item>
                               <Dropdown.Item href="/#">
                                 <span><BsInfoSquare /> Thông tin</span>
                               </Dropdown.Item>

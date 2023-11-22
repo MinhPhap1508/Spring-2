@@ -18,8 +18,8 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String fullName;
-    private Double dob;
-    private Double gender;
+    private String dob;
+    private String gender;
     private String email;
     private String phone;
     private String address;

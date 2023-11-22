@@ -1,0 +1,94 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .profile {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .row {
+            display: flex;
+        }
+
+        .col-4 {
+            flex-basis: 33.33%;
+        }
+
+        .col-8 {
+            flex-basis: 66.67%;
+        }
+
+        img {
+            width: 250px;
+            height: 300px;
+            border-radius: 50%;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        fieldset {
+            width: 400px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        fieldset .profile {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        fieldset input[type="text"] {
+            margin-left: 10px;
+        }
+
+        .img {
+            margin-left: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row" style="margin-top: 5rem;">
+        <div class="img col-4">
+            <img src="https://inkythuatso.com/uploads/thumbnails/800/2023/03/6-anh-dai-dien-trang-inkythuatso-03-15-26-36.jpg"
+                style="width: 250px; height: 300px;border-radius: 50%;" alt="">
+        </div>
+        <div class="col-8">
+            <form>
+                <fieldset>
+                    <span class="profile">Họ Tên</span>
+                    <input type="text">
+                    <span class="profile">Ngày Sinh</span>
+                    <input type="text">
+                    <span class="profile">Giới tính</span>
+                    <input type="text">
+                    <span class="profile">Email</span>
+                    <input type="text">
+                    <span class="profile">Số điện thoại</span>
+                    <input type="text">
+                    <span class="profile">Địa chỉ</span>
+                    <input type="text">
+                    <span class="profile">Căn cước công dân</span>
+                    <input type="text">
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
