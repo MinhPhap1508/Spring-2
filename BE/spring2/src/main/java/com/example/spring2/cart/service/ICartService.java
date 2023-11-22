@@ -16,7 +16,7 @@ public interface ICartService {
     Long getCartById(String username, Long productId);
 
 
-    void increaseQuantity(String username, Long id);
+    void increaseQuantity(String username, Long id, Integer quantity);
 
     void decreaseQuantity(String username, Long id);
 

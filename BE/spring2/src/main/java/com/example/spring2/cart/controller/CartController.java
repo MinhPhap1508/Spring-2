@@ -31,7 +31,7 @@ public class CartController {
         Long cart = cartService.getCartById(username, productId);
 
         if(cart != null) {
-            cartService.increaseQuantity(username, productId);
+            cartService.increaseQuantity(username, productId, quantity);
             return new ResponseEntity<>(HttpStatus.OK);
         }
          cartService.addCart(quantity, username, productId);
@@ -45,8 +45,9 @@ public class CartController {
 
     @PostMapping("/increase-quantity")
     public ResponseEntity<?> increaseQuantity(@RequestParam String username,
-                                              @RequestParam Long id) {
-        cartService.increaseQuantity(username, id);
+                                              @RequestParam Long id,
+                                              @RequestParam Integer quantity) {
+        cartService.increaseQuantity(username, id, quantity);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

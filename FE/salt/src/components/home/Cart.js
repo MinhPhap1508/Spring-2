@@ -20,7 +20,8 @@ export function Cart() {
     const [cart, setCart] = useState([])
     const [customer, setCustomer] = useState();
     const [delivery, setDelivery] = useState([]);
-    const [selectedDelivery, setSelectedDelivery] = useState(null);
+    const [selectedDelivery, setSelectedDelivery] = useState(false);
+    const [isDeliverySelected, setIsDeliverySelected] = useState(false);
     const [selectedDeliveryPrice, setSelectedDeliveryPrice] = useState(0);
     const navigate = useNavigate();
     // const [quantity, setQuantity] = useState(1);
@@ -30,18 +31,20 @@ export function Cart() {
         console.log("deli", res);
         setDelivery(res);
     }
-     const totalPriceProduct = cart.reduce((acc, item) => {
+    const totalPriceProduct = cart.reduce((acc, item) => {
         return acc + (item.price * item.quantity)
-     }, 0);
-     const totalPrice = selectedDeliveryPrice + totalPriceProduct;
-     const handleDeliveryChange = (event) => {
+    }, 0);
+    const totalPrice = selectedDeliveryPrice + totalPriceProduct;
+    const handleDeliveryChange = (event) => {
         const selectedDeliveryName = event.target.value;
         const selectedDelivery = delivery.find(item => item.nameDelivery === selectedDeliveryName);
-        
+      
         if (selectedDelivery) {
           setSelectedDeliveryPrice(selectedDelivery.priceDelivery);
+          setIsDeliverySelected(true);
         } else {
           setSelectedDeliveryPrice(0);
+          setIsDeliverySelected(false);
         }
       };
     //   const getCustomer = async() => {
@@ -59,7 +62,7 @@ export function Cart() {
         quantity.value = parseInt(quantity.value) + 1;
         const res = infoToken();
         // await increase(res.sub, c.id)
-        await addCart(2, res.sub, co.id)
+        await addCart(1, res.sub, co.id)
         getCart();
     }
     const tang = async (productId) => {
@@ -148,7 +151,6 @@ export function Cart() {
         getCart();
         getDelivery();
     }, [])
-    
 
     return (
         <>
@@ -230,12 +232,12 @@ export function Cart() {
                                                         ))}
                                                     </select>
                                                     {selectedDeliveryPrice && (
-                                                        <div className='mt-5 d-flex' style={{fontFamily:"display"}}>
+                                                        <div className='mt-5 d-flex' style={{ fontFamily: "display" }}>
                                                             <h4>Phí vận chuyển:</h4>
-                                                            <span style={{marginLeft:"6.2rem", fontSize:"22px"}}>{vnd.format(selectedDeliveryPrice)}</span>
+                                                            <span style={{ marginLeft: "6.2rem", fontSize: "22px" }}>{vnd.format(selectedDeliveryPrice)}</span>
                                                         </div>
                                                     )}
-                                                
+
                                                 </div>
 
                                                 <hr className="my-4" />
@@ -244,10 +246,22 @@ export function Cart() {
                                                     <h5>{vnd.format(totalPrice)}</h5>
                                                 </div>
                                                 <div>
-                                                    {checkout ? (
-                                                        <Paypal props1 = {totalPrice} props2 = {cart} />
+                                                    {cart.length > 0 ? (
+                                                        <div>
+                                                            {checkout && isDeliverySelected ? (
+                                                                <Paypal props1={totalPrice} props2={cart} />
+                                                            ) : !checkout && isDeliverySelected ? (
+                                                                <button onClick={() => setCheckout(true)} type="button" className="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">
+                                                                    Thanh toán
+                                                                </button>
+                                                            ) : (
+                                                                <div className="alert alert-warning" role="alert">
+                                                                    Vui lòng chọn đơn vị vận chuyển
+                                                                </div>
+                                                            )}
+                                                        </div>
                                                     ) : (
-                                                        <button onClick={() => { setCheckout(true) }} type="button" className="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">Thanh toán</button>
+                                                        <h5>Giỏ hàng của bạn đang trống</h5>
                                                     )}
                                                 </div>
                                             </div>

@@ -26,6 +26,7 @@ public interface IOrdersRepository extends JpaRepository<Orders, Long> {
             "from orders o\n" +
             "join order_detail od on o.id = od.order_id\n" +
             "where o.app_user_id = :id " +
-            "group by o.order_date, o.id", nativeQuery = true)
+            "group by o.order_date, o.id " +
+            " order by o.order_date desc", nativeQuery = true)
     Page<IOrderDto> getListOrder(Long id, Pageable pageable);
 }

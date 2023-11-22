@@ -125,7 +125,7 @@ const ProductDetail = () => {
               <div className="women-item-carousel">
                 <div className="owl-women-item owl-carousel d-flex">
                   <Swiper
-                    slidesPerView={4}
+                    slidesPerView={3}
                     spaceBetween={10}
                     freeMode={true}
                     autoplay={{

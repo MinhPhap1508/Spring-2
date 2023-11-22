@@ -8,6 +8,10 @@ import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getProductList, getProductTypeList } from "../../service/ProductService";
+import {
+  AiOutlineDoubleLeft,
+  AiOutlineDoubleRight,
+} from "react-icons/ai";
 
 export function List() {
     const [product, setProduct] = useState([]);
@@ -152,39 +156,24 @@ export function List() {
 
                 </div>
                 <div className="row pb-3">
-            <div className="col-lg-12 text-center">
-              <div className="pagination-wrap d-flex justify-content-center text-center">
-                
-                  <div className="d-inline-block">
-                    <button
-                      className="btn button-shop"
-                      onClick={() => {
-                        previousPage();
-                      }}
-                    >
-                      Prev
-                    </button>
-                  </div>
-                  
-                  {/* <span>
-                    <a>
-                      {page + 1}/{totalPage}
-                    </a>
-                  </span> */}
-                 
-                  <div>
-                    <button
-                      className="btn button-shop"
-                      onClick={() => {
-                        nextPage();
-                      }}
-                    >
-                      Next
-                    </button>
-                  </div>
-               
-              </div>
-            </div>
+                <div className="row">
+                    <div className="col-sm-5 text-center" >
+                        <button className="btn btn-outline-primary" style={{ marginLeft: "13rem" }} onClick={() => previousPage()}>
+                            <AiOutlineDoubleLeft />
+                        </button>
+                    </div>
+                    <div className="col-sm-2 text-center" >
+                        <p className="btn btn-outline-primary" style={{ marginLeft: "1rem" }} >
+                            {page + 1}/{totalPage}
+
+                        </p>
+                    </div>
+                    <div className="col-sm-5 text-center" >
+                        <button className="btn btn-outline-primary" onClick={() => nextPage()}>
+                            <AiOutlineDoubleRight />
+                        </button>
+                    </div>
+                </div>
           </div>
             </div>
             <Footer />

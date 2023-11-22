@@ -6,6 +6,7 @@ import com.example.spring2.delivery.model.Delivery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -42,9 +43,9 @@ public interface ICartRepository extends JpaRepository<Cart, Long> {
     @Transactional
     @Modifying
     @Query(value = "UPDATE cart c " +
-            "SET c.quantity_cart = c.quantity_cart + 1 " +
+            "SET c.quantity_cart = c.quantity_cart + :quantity " +
             "WHERE c.product_id = :id AND c.app_user_id = :appId", nativeQuery = true)
-    void increaseQuantity(Long appId, Long id);
+    void increaseQuantity(@Param("appId") Long appId, @Param("id") Long id, @Param("quantity") Integer quantity);
     @Transactional
     @Modifying
     @Query(value = "UPDATE cart c " +
