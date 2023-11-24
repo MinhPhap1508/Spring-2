@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './productdetail.css'
 import { Header } from './Header';
 import { Footer } from './Footer';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { getProductById } from '../../service/ProductService';
 import { useEffect } from 'react';
 import { addCart, increase } from '../../service/CartService';
@@ -78,7 +78,8 @@ const ProductDetail = () => {
     useEffect(() => {
         getProduct(param.id)
         getAllByCate();
-    }, param.id)
+        window.scrollTo(0, 0)
+    }, [param.id])
 
     return (
         <>
@@ -91,7 +92,7 @@ const ProductDetail = () => {
                         </div>
                         <div className="details-section">
                             <h2>{product.nameProduct}</h2>
-                            <p>{product.priceProduct}</p>
+                            <h4>{vnd.format(product.priceProduct)}</h4>
                             <div className="quantity-section">
                                 <div style={{ marginRight: "15px" }}>
                                     <button onClick={decreaseQuantity}>-</button>
@@ -139,19 +140,35 @@ const ProductDetail = () => {
                     className="mySwiper"
                   >
                     {list.map((p) => (
-
                       <SwiperSlide>
                         <div className="item mt-5">
                           <div className="thumb">
-                            <img style={{ height: "320px", width: "430px", objectFit:"cover", borderRadius:"20px" }}
-                              src={p.image}
-                              alt="" />
+
+                            <div className="image-container">
+                              <img
+                                style={{ height: "320px", width: "430px", objectFit: "cover", borderRadius: "20px" }}
+                                src={p.image}
+                                alt=""
+                              />
+                              <div className="hover-content">
+                                <div className="button-container">
+                                  <Link to={`/product/${p.id}`}>
+                                    <button className="btn rounded view-details-btn">
+                                      <span className="view-details-label">Xem chi tiết</span>
+                                    </button>
+                                  </Link>
+                                  <button className="btn rounded add-to-cart-btn" onClick={() => addToCart(p)}>
+                                    <span className="add-to-cart-label">Thêm vào giỏ hàng</span>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+
                           </div>
                           <div className="down-content">
                             <h4>{p.nameProduct}</h4>
                             <span>{p.price}</span>
                             <p>{vnd.format(p.priceProduct)}</p>
-
                           </div>
                         </div>
                       </SwiperSlide>

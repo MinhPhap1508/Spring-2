@@ -12,19 +12,39 @@ import 'swiper/css/pagination';
 import { FreeMode, Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { GetAllBestseller, GetAllHome } from "../../service/Home";
+import { infoToken } from "../../service/Account";
+import { addCart } from "../../service/CartService";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 export function Home() {
   const [product, setProduct] = useState([]);
+  const navigate = useNavigate();
   const vnd = new Intl.NumberFormat('vi-VN', {
     style: 'currency',
     currency: 'VND'
-})
+  })
   const getAll = async () => {
     const res = await GetAllBestseller();
     console.log("res set", res);
     setProduct(res)
   }
-
+  const addToCart = async (p) => {
+    const res = infoToken();
+    if (res != null) {
+      const result = await addCart(1, res.sub, p.id)
+      console.log("res kt ii p", result);
+      if (result.status == 200) {
+        toast("Thêm vào giỏ hàng thành công")
+      } if (result.status == 201) {
+        toast("Thêm vào giỏ hàng thành công")
+      }
+    } else {
+      Swal.fire("Vui lòng đăng nhập")
+      navigate("/login");
+    }
+  }
   useEffect(() => {
     getAll();
     document.title = "Nhà Muối"
@@ -49,7 +69,7 @@ export function Home() {
                 Hợp túi tiền mọi quý khách<br></br>
                 Và hợp gu của tất cả các bạn trẻ</h2>
             </div>
-            <Card.Img style={{ borderRadius: "50%", marginLeft: "3rem", marginTop: "5.3rem", height: "400px", width: "400px", objectFit: "cover" }} src="img/boss.jpg"></Card.Img>
+            <Card.Img style={{ borderRadius: "50%", marginLeft: "3rem", marginTop: "5.3rem", height: "400px", width: "400px", objectFit: "cover" }} src="img/boss1.jpg"></Card.Img>
 
           </div>
           <div className="col-4 mt-5">
@@ -119,19 +139,35 @@ export function Home() {
                     className="mySwiper"
                   >
                     {product.map((p) => (
-
                       <SwiperSlide>
                         <div className="item mt-5">
                           <div className="thumb">
-                            <img style={{ height: "320px", width: "430px", objectFit:"cover", borderRadius:"20px" }}
-                              src={p.image}
-                              alt="" />
+
+                            <div className="image-container">
+                              <img
+                                style={{ height: "320px", width: "430px", objectFit: "cover", borderRadius: "20px" }}
+                                src={p.image}
+                                alt=""
+                              />
+                              <div className="hover-content">
+                                <div className="button-container">
+                                  <Link to={`/product/${p.id}`}>
+                                    <button className="btn rounded view-details-btn">
+                                      <span className="view-details-label">Xem chi tiết</span>
+                                    </button>
+                                  </Link>
+                                  <button className="btn rounded add-to-cart-btn" onClick={() => addToCart(p)}>
+                                    <span className="add-to-cart-label">Thêm vào giỏ hàng</span>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+
                           </div>
                           <div className="down-content">
                             <h4>{p.nameProduct}</h4>
                             <span>{p.price}</span>
                             <p>{vnd.format(p.priceProduct)}</p>
-
                           </div>
                         </div>
                       </SwiperSlide>

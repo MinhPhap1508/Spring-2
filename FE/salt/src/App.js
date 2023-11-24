@@ -12,6 +12,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Menu } from './components/home/Menu';
 import { List } from './components/product/List';
 import { History } from './components/orders/History';
+import ListSearch from './components/home/ListSearch';
+import { Customer } from './components/customer/Customer';
 
 
 function App() {
@@ -27,6 +29,8 @@ function App() {
       <Route path='/register' element={<Register/>}/>
       <Route path='/list' element={<List/>}/>
       <Route path='history' element={<History/>}/>
+      <Route path='/home/search/:keywork' element={<ListSearch/>}/>
+      <Route path='/customer' element={<Customer/>}/>
     </Routes>
     <ToastContainer/>
     </>

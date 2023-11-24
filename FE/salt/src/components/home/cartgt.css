@@ -249,4 +249,41 @@
     font-size: 24px;
     text-align: center;
   }
+  .image-container {
+    position: relative;
+  }
+  
+  .hover-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .button-container button {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    margin: 0 5px;
+  }
+  
+  .image-container:hover .hover-content {
+    opacity: 1;
+  }
+  
+  .image-container:hover .hover-content button {
+    opacity: 1;
+  }
   

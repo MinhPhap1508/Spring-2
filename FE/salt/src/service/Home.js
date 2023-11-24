@@ -27,3 +27,11 @@ export const GetAllByCategory = async (id) => {
         console.log(e);
     }
 }
+export const searchHeader = async (page, nameSearch, searchType, sort, sortBy) => {
+    const res = await axios.get(`http://localhost:8080/home/search?page=${page}&nameSearch=${nameSearch}&searchType=${searchType}&sort=${sort}&sortBy=${sortBy}`)
+    return res;
+}
+export const listSearch = async(page, searchName) => {
+    const res = await axios.get(`http://localhost:8080/home/listSearch?page=${page}&searchName=${searchName}`)
+    return res;
+}

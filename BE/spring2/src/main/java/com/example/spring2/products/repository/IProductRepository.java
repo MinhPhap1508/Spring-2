@@ -93,6 +93,15 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             "join category ct on p.category_id = ct.id " +
             "where p.flag_delete = 1 and name_category like :searchType", nativeQuery = true)
     Page<IProductDTo> findAllProductBy(Pageable pageable, String searchType);
+
+    @Query(value = "select p.id ," +
+            " p.name_product as nameProduct, " +
+            " p.price as priceProduct, p.image," +
+            " ct.name_category as nameCategory " +
+            "FROM product p " +
+            "join category ct on p.category_id = ct.id " +
+            "where p.flag_delete = 1 and name_product like :searchName", nativeQuery = true)
+    Page<IProductDTo> findAllProductByName(Pageable pageable, String searchName);
     @Query(value = "SELECT p.id AS id, ct.id,\n" +
             "p.name_product AS nameProduct,\n" +
             "p.price AS priceProduct,\n" +

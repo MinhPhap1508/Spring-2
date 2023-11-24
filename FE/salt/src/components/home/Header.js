@@ -7,11 +7,13 @@ import { infoToken } from "../../service/Account";
 import { BsInfoSquare } from "react-icons/bs";
 import { BiLogOut, BiHistory } from "react-icons/bi";
 import Swal from "sweetalert2";
-export function Header() {
+export function Header({ inputSearch }) {
 
     const navigate = useNavigate()
     const [JwtToken, setJwtToken] = useState(localStorage.getItem("JWT"));
     const [userName, setUserName] = useState("");
+    const [keyword, setKeyword] = useState("");
+    const [foundProducts, setFoundProducts] = useState(true);
 
     const getUserName = async () => {
         const result = await infoToken();
@@ -20,7 +22,17 @@ export function Header() {
         }
     }
 
-    
+    const handleInputChange = (event) => {
+      setKeyword(event.target.value);
+    }
+    const searchProduct = (keyword) => {
+      const found = 
+      navigate(`/home/search/${keyword}`);
+    }
+    const handleSearch = (event) => {
+      event.preventDefault();
+      searchProduct(keyword);
+    }
 
     useEffect(() => {
         getUserName();
@@ -52,14 +64,18 @@ export function Header() {
                     {!JwtToken ? (
                         <ul className="navbar-nav">
                             <li className="nav-item rounded bg-light search-nav-item"><input type="text" id="search" className="bg-light" placeholder="Bánh ép, đồ ăn vặt" /><span className="fa fa-search text-muted" /></li>
-                            <li className="nav-item "><a className="nav-link" href="/cart"><span><AiOutlineShoppingCart /></span></a> </li>
+                            {/* <li className="nav-item "><a className="nav-link" href="/cart"><span><AiOutlineShoppingCart /></span></a> </li> */}
                             <li className="nav-item "><a className="nav-link" href="/list"><span><VscLayoutMenubar /></span></a></li>
                             <li className="nav-item "><a className="nav-link" href="/login"><span><AiOutlineUser />Đăng nhập</span></a> </li>
                         </ul>) : (
                         <ul className="navbar-nav">
                         <li className="nav-item rounded bg-light search-nav-item">
-                          <input type="text" id="search" className="bg-light" placeholder="Bánh ép, đồ ăn vặt" />
-                          <span className="fa fa-search text-muted" />
+                          <input type="text" id="search" className="bg-light"
+                                  name="searchName"
+                          placeholder="Bánh ép, đồ ăn vặt"
+                                  value={inputSearch}
+                                  onChange={(event) => {handleInputChange(event)}} />
+                          <span className="fa fa-search text-muted" onClick={(e) => handleSearch(e)} />
                         </li>
                         <li className="nav-item "><a className="nav-link" href="/cart"><span><AiOutlineShoppingCart />Giỏ hàng</span></a> </li>
                         <li className="nav-item "><a className="nav-link" href="/list"><span><VscLayoutMenubar />Thực đơn</span></a></li>
@@ -72,7 +88,7 @@ export function Header() {
                               <Dropdown.Item href="/history">
                                 <span><BiHistory /> Lịch sử đặt hàng</span>
                               </Dropdown.Item>
-                              <Dropdown.Item href="/#">
+                              <Dropdown.Item href="/customer">
                                 <span><BsInfoSquare /> Thông tin</span>
                               </Dropdown.Item>
                               <Dropdown.Item>

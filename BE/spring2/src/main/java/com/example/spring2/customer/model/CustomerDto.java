@@ -3,8 +3,8 @@ package com.example.spring2.customer.model;
 public class CustomerDto {
     private Long id;
     private String fullName;
-    private Double dob;
-    private Double gender;
+    private String dob;
+    private String gender;
     private String email;
     private String phone;
     private String address;
@@ -13,7 +13,7 @@ public class CustomerDto {
     public CustomerDto() {
     }
 
-    public CustomerDto(Long id, String fullName, Double dob, Double gender, String email, String phone, String address, String idCard) {
+    public CustomerDto(Long id, String fullName, String dob, String gender, String email, String phone, String address, String idCard) {
         this.id = id;
         this.fullName = fullName;
         this.dob = dob;
@@ -40,19 +40,19 @@ public class CustomerDto {
         this.fullName = fullName;
     }
 
-    public Double getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Double dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
-    public Double getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Double gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 

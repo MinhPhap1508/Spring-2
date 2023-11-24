@@ -5,7 +5,7 @@ import { Header } from "../home/Header";
 import { infoToken } from "../../service/Account";
 import { addCart } from "../../service/CartService";
 import Swal from "sweetalert2";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getProductList, getProductTypeList } from "../../service/ProductService";
 import {
@@ -13,14 +13,16 @@ import {
   AiOutlineDoubleRight,
 } from "react-icons/ai";
 
-export function List() {
+export function SearchHeader() {
     const [product, setProduct] = useState([]);
     const [productTypeList, setProductTypeList] = useState([]);
     const [page, setPage] = useState(0);
     const [totalPage, setTotalPage] = useState(1);
     const [searchType, setSearchType] = useState("");
-    const [sort, setSort] = useState("id");
+    const [sort, setSort] = useState("asc");
+    const [sortBy, setSortBy] = useState("priceProduct");
     const navigate = useNavigate();
+    const param = useParams();
     const vnd = new Intl.NumberFormat('vi-VN', {
         style: 'currency',
         currency: 'VND'
@@ -81,7 +83,7 @@ export function List() {
             const result = await addCart(1, res.sub, p.id)
             console.log("res kt ii p", result);
             if (result.status == 200) {
-                toast("Thêm vào giỏ hàng thành công")
+                toast("Thêm 1 sản phẩm nữa")
             } if (result.status == 201) {
                 toast("Thêm vào giỏ hàng thành công")
             }

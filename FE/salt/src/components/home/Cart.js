@@ -4,11 +4,11 @@ import { Header } from './Header'
 import './cart.css'
 import "bootstrap/dist/css/bootstrap.css"
 import { addCart, decrease, deleteCart, getAllDelivery, getCartDetail, increase } from '../../service/CartService'
-import { infoToken } from '../../service/Account'
+import { getCustomerByUsername, infoToken } from '../../service/Account'
 import Swal from 'sweetalert2'
 import { Paypal } from '../Paypal'
 import { Field } from 'formik'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 export function Cart() {
     const [checkout, setCheckout] = useState(false);
@@ -38,21 +38,23 @@ export function Cart() {
     const handleDeliveryChange = (event) => {
         const selectedDeliveryName = event.target.value;
         const selectedDelivery = delivery.find(item => item.nameDelivery === selectedDeliveryName);
-      
+
         if (selectedDelivery) {
-          setSelectedDeliveryPrice(selectedDelivery.priceDelivery);
-          setIsDeliverySelected(true);
+            setSelectedDeliveryPrice(selectedDelivery.priceDelivery);
+            setIsDeliverySelected(true);
         } else {
-          setSelectedDeliveryPrice(0);
-          setIsDeliverySelected(false);
+            setSelectedDeliveryPrice(0);
+            setIsDeliverySelected(false);
         }
-      };
-    //   const getCustomer = async() => {
-    //     const res = infoToken();
-    //     if(res != null) {
-    //         const response = await axios.get(``)
-    //     }
-    //   }
+    };
+    const getCustomer = async () => {
+        const res = infoToken();
+        if (res != null) {
+            const response = await getCustomerByUsername(res.sub);
+            console.log("cus", response);
+            setCustomer(response)
+        }
+    }
     const addToOrder = async () => {
 
     }
@@ -150,8 +152,9 @@ export function Cart() {
     useEffect(() => {
         getCart();
         getDelivery();
+        getCustomer();
     }, [])
-
+    // if (!customer) return null
     return (
         <>
             <Header />
@@ -166,7 +169,7 @@ export function Cart() {
                                             <div className="p-5">
                                                 <div className="d-flex justify-content-between align-items-center mb-5">
                                                     <h1 className="fw-bold mb-0 text-black">Giỏ hàng của bạn</h1>
-                                                    <h6 className="mb-0 text-muted">3 sản phẩm</h6>
+                                                    <h6 className="mb-0 text-muted">{cart.length} sản phẩm</h6>
                                                 </div>
                                                 {cart.map((c) => (
                                                     <>
@@ -216,10 +219,26 @@ export function Cart() {
                                         <div className="col-lg-4 bg-grey">
                                             <div className="p-5">
                                                 <h3 className="fw-bold mb-5 mt-2 pt-1">Thông tin cá nhân</h3>
-
+                                                {customer ? (
+                                                    <ul>
+                                                        <li className='h5 fw-normal d-flex justify-content-between'>
+                                                            Tên khách hàng:
+                                                            <p>{customer.fullName}</p>
+                                                        </li>
+                                                        <li className='h5 fw-normal d-flex justify-content-between'>
+                                                            Địa chỉ:
+                                                            <p>{customer.address}</p>
+                                                        </li>
+                                                        <li className='h5 fw-normal d-flex justify-content-between'>
+                                                            Số điện thoại:
+                                                            <p>{customer.phone}</p>
+                                                        </li>
+                                                    </ul>
+                                                ) : (<p>Vui lòng nhập thông tin</p>)
+                                                }
                                                 <hr className="my-4" />
                                                 <div className="d-flex justify-content-between mb-4">
-                                                    <h5 className="text-uppercase" style={{ fontFamily: "monaco" }}>3 sản phẩm</h5>
+                                                    <h5 className="text-uppercase" style={{ fontFamily: "monaco" }}>{cart.length} sản phẩm</h5>
                                                     <h5>{vnd.format(totalPriceProduct)}</h5>
                                                 </div>
                                                 <h5 className="text-uppercase mb-3">Chọn đơn vị vận chuyển</h5>
@@ -246,22 +265,33 @@ export function Cart() {
                                                     <h5>{vnd.format(totalPrice)}</h5>
                                                 </div>
                                                 <div>
-                                                    {cart.length > 0 ? (
+                                                    {customer ? (
                                                         <div>
-                                                            {checkout && isDeliverySelected ? (
-                                                                <Paypal props1={totalPrice} props2={cart} />
-                                                            ) : !checkout && isDeliverySelected ? (
-                                                                <button onClick={() => setCheckout(true)} type="button" className="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">
-                                                                    Thanh toán
-                                                                </button>
-                                                            ) : (
-                                                                <div className="alert alert-warning" role="alert">
-                                                                    Vui lòng chọn đơn vị vận chuyển
+                                                            {cart.length > 0 ? (
+                                                                <div>
+                                                                    {checkout && isDeliverySelected ? (
+                                                                        <Paypal props1={totalPrice} props2={cart} />
+                                                                    ) : !checkout && isDeliverySelected ? (
+                                                                        <button
+                                                                            onClick={() => setCheckout(true)}
+                                                                            type="button"
+                                                                            className="btn btn-dark btn-block btn-lg"
+                                                                            data-mdb-ripple-color="dark"
+                                                                        >
+                                                                            Thanh toán
+                                                                        </button>
+                                                                    ) : (
+                                                                        <div className="alert alert-warning" role="alert">
+                                                                            Vui lòng chọn đơn vị vận chuyển
+                                                                        </div>
+                                                                    )}
                                                                 </div>
+                                                            ) : (
+                                                                <h5>Giỏ hàng của bạn đang trống</h5>
                                                             )}
                                                         </div>
                                                     ) : (
-                                                        <h5>Giỏ hàng của bạn đang trống</h5>
+                                                        <Link to="/customer">Bấm vào đây để cập nhật thông tin</Link>
                                                     )}
                                                 </div>
                                             </div>

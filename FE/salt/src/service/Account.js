@@ -25,3 +25,10 @@ export const getFullnameById = async (id) => {
     const res = await axios.get(`http://localhost:8080/api/v1/auth/${id}`)
     return res;
 }
+export const getCustomerByUsername = async (username) => {
+    const res = await axios.get(`http://localhost:8080/customer?username=${username}`)
+    return res.data
+}
+export const createCustomer = async (username, customer) => {
+    await axios.post(`http://localhost:8080/customer/add-customer?username=${username}`,customer)
+}
